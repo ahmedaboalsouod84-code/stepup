@@ -302,10 +302,24 @@
     $(document).on("click", ".cs_video_open", function (e) {
       e.preventDefault();
       var video = $(this).attr("href");
-      video = video.split("?v=")[1].trim();
+      var embedUrl = video;
+
+      if (video.indexOf("youtube.com") !== -1 || video.indexOf("youtu.be") !== -1) {
+        var videoId = "";
+        if (video.indexOf("v=") !== -1) {
+          videoId = video.split("v=")[1].trim();
+        } else if (video.indexOf("youtu.be/") !== -1) {
+          videoId = video.split("youtu.be/")[1].trim();
+        }
+        videoId = videoId.split("&")[0];
+        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      } else if (video.toLowerCase().endsWith(".mp4")) {
+        embedUrl = video;
+      }
+
       $(".cs_video_popup_container iframe").attr(
         "src",
-        `https://www.youtube.com/embed/${video}`
+        embedUrl
       );
       $(".cs_video_popup").addClass("active");
     });
