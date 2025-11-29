@@ -581,7 +581,7 @@
                 position: relative;
                 width: 100%;
                 overflow: hidden;
-                padding-bottom: 80px;
+                padding-bottom: 100px;
             }
             
             .cs_horizontal_scrolls .swiper-wrapper {
@@ -601,12 +601,14 @@
                 width: 100%;
                 margin-right: 0;
                 margin-left: 0;
+                position: relative;
             }
             
             .cs_portfolio.cs_style_1 {
                 width: 100%;
-                display: flex;
-                flex-direction: column;
+                display: flex !important;
+                flex-direction: column !important;
+                position: relative;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_img {
@@ -616,6 +618,7 @@
                 overflow: hidden;
                 border-radius: 12px;
                 position: relative;
+                margin-bottom: 0;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_img img {
@@ -626,29 +629,52 @@
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_overlay {
-                opacity: 0;
-                display: none;
+                opacity: 0 !important;
+                display: none !important;
+                visibility: hidden !important;
             }
             
+            /* Override external CSS that hides portfolio info on mobile */
             .cs_portfolio.cs_style_1 .cs_portfolio_info {
-                padding: 20px 20px 0;
+                padding: 24px 20px 0 !important;
                 text-align: center;
-                position: static;
-                background: transparent;
-                z-index: 1;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                width: auto !important;
+                background: transparent !important;
+                z-index: 10;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                height: auto !important;
+                min-height: auto !important;
+                transform: none !important;
+            }
+            
+            .cs_portfolio.cs_style_1:hover .cs_portfolio_info {
+                opacity: 1 !important;
+                bottom: auto !important;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_title {
                 font-size: clamp(22px, 5vw, 28px) !important;
-                margin-top: 0;
-                margin-bottom: 8px;
-                color: inherit;
+                margin-top: 0 !important;
+                margin-bottom: 10px !important;
+                color: #fff !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                line-height: 1.3 !important;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_subtitle {
-                font-size: 15px;
-                opacity: 0.8;
-                margin: 0;
+                font-size: 15px !important;
+                opacity: 0.9 !important;
+                margin: 0 !important;
+                color: rgba(255, 255, 255, 0.9) !important;
+                display: block !important;
+                visibility: visible !important;
             }
             
             /* Portfolio Navigation Buttons - Mobile - Overlay on Image */
@@ -657,10 +683,11 @@
                 display: flex !important;
                 position: absolute;
                 top: 50%;
-                transform: translateY(-50%);
-                z-index: 20;
+                z-index: 25;
                 width: 50px;
                 height: 50px;
+                min-width: 50px;
+                min-height: 50px;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
@@ -670,6 +697,7 @@
                 border-radius: 50%;
                 border: 2px solid rgba(255, 255, 255, 0.3);
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                pointer-events: auto;
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_prev:hover,
@@ -679,12 +707,14 @@
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_prev {
-                left: 15px;
+                left: 15px !important;
+                right: auto !important;
                 transform: translateY(-50%);
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_next {
-                right: 15px;
+                right: 15px !important;
+                left: auto !important;
                 transform: translateY(-50%);
             }
             
@@ -692,12 +722,13 @@
             .cs_horizontal_scrolls .cs_swiper_button_next svg {
                 width: 24px;
                 height: 24px;
+                flex-shrink: 0;
             }
             
             /* Portfolio Pagination Dots - Mobile */
             .cs_horizontal_scrolls .cs_portfolio_pagination {
                 position: absolute;
-                bottom: 20px;
+                bottom: 60px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: auto !important;
@@ -870,65 +901,109 @@
             .cs_horizontal_scroll_wrap {
                 margin-left: -15px;
                 margin-right: -15px;
+                overflow: visible;
+                position: relative;
             }
             
             .cs_horizontal_scrolls {
-                padding-left: 15px;
-                padding-right: 15px;
+                padding-left: 0;
+                padding-right: 0;
+                padding-bottom: 140px;
+                position: relative;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_img {
                 aspect-ratio: 16 / 10;
                 border-radius: 0;
+                position: relative;
             }
             
             .cs_portfolio.cs_style_1 {
                 position: relative;
-                display: flex;
-                flex-direction: column;
+                display: flex !important;
+                flex-direction: column !important;
             }
             
+            /* Override external CSS that hides portfolio info on small mobile */
             .cs_portfolio.cs_style_1 .cs_portfolio_info {
-                padding: 20px 15px 0;
+                padding: 24px 15px 0 !important;
                 text-align: left;
-                background: transparent;
-                position: static;
+                background: transparent !important;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                width: auto !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                margin-top: 0 !important;
+                height: auto !important;
+                min-height: auto !important;
+                transform: none !important;
+            }
+            
+            .cs_portfolio.cs_style_1:hover .cs_portfolio_info {
+                opacity: 1 !important;
+                bottom: auto !important;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_overlay {
-                display: none;
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_title {
                 font-size: clamp(20px, 5vw, 24px) !important;
-                margin-top: 0;
-                margin-bottom: 6px;
-                color: inherit;
+                margin-top: 0 !important;
+                margin-bottom: 8px !important;
+                color: #fff !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                line-height: 1.3 !important;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_subtitle {
-                font-size: 14px;
-                margin: 0;
+                font-size: 14px !important;
+                margin: 0 !important;
+                color: rgba(255, 255, 255, 0.9) !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 0.9 !important;
             }
             
-            /* Navigation buttons - smaller on very small screens */
-            .cs_horizontal_scrolls .cs_swiper_button_prev,
+            /* Navigation buttons - smaller on very small screens, positioned correctly */
+            .cs_horizontal_scrolls .cs_swiper_button_prev {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                min-height: 44px;
+                left: 15px !important;
+                right: auto !important;
+                transform: translateY(-50%);
+            }
+            
             .cs_horizontal_scrolls .cs_swiper_button_next {
                 width: 44px;
                 height: 44px;
-                left: 10px;
-                right: 10px;
+                min-width: 44px;
+                min-height: 44px;
+                right: 15px !important;
+                left: auto !important;
+                transform: translateY(-50%);
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_prev svg,
             .cs_horizontal_scrolls .cs_swiper_button_next svg {
                 width: 20px;
                 height: 20px;
+                flex-shrink: 0;
             }
             
-            /* Pagination dots - adjust position */
+            /* Pagination dots - adjust position above text */
             .cs_horizontal_scrolls .cs_portfolio_pagination {
-                bottom: 15px;
+                bottom: 85px;
             }
             
             /* Moving Text - Smaller */
