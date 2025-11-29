@@ -56,6 +56,16 @@
     <link rel="stylesheet" href="assets/css/plugins/swiper.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <style>
+        /* Scroll-Based Navbar Styles - Only visible at top */
+        .cs_site_header {
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(0);
+        }
+        
+        .cs_site_header.navbar-hidden {
+            transform: translateY(-100%);
+        }
+        
         /* Animated Hero Background - Enhanced Motion Effects */
         @keyframes gradientShift {
             0% {
@@ -1719,6 +1729,44 @@
     <script src="assets/js/plugins/ScrollSmoother.min.js" defer></script>
     <script src="assets/js/plugins/gsap.min.js" defer></script>
     <script src="assets/js/main.js" defer></script>
+    
+    <!-- Scroll-Based Navbar Script - Only visible at top -->
+    <script>
+        (function() {
+            'use strict';
+            
+            const navbar = document.querySelector('.cs_site_header');
+            if (!navbar) return;
+            
+            let ticking = false;
+            
+            function updateNavbar() {
+                const currentScrollY = window.scrollY;
+                
+                // Show navbar only when at the very top (scrollY = 0)
+                if (currentScrollY === 0) {
+                    navbar.classList.remove('navbar-hidden');
+                } else {
+                    navbar.classList.add('navbar-hidden');
+                }
+                
+                ticking = false;
+            }
+            
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateNavbar);
+                    ticking = true;
+                }
+            }
+            
+            // Initial state check
+            updateNavbar();
+            
+            // Scroll event listener
+            window.addEventListener('scroll', onScroll, { passive: true });
+        })();
+    </script>
 </body>
 
 </html>
