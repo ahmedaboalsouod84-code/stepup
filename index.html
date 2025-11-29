@@ -588,23 +588,90 @@
                 font-size: 14px;
             }
             
-            /* Team Section - Mobile Grid */
+            /* Team Section - Mobile Grid - COMPLETELY REDESIGNED FOR MOBILE */
             .cs_team_section {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+                min-height: auto !important;
+                height: auto !important;
+                flex-direction: column !important;
+                overflow: visible !important;
             }
             
             .cs_team_img {
-                width: 100%;
+                width: 100% !important;
+                flex-grow: 1 !important;
+                position: relative !important;
+                overflow: hidden !important;
+                border-radius: 12px !important;
+                aspect-ratio: 1 / 1.2 !important;
+                cursor: default !important;
             }
             
-            .cs_team_text_title {
-                font-size: 16px;
+            /* Remove all hover effects on mobile */
+            .cs_team_img:hover {
+                flex-grow: 1 !important;
+            }
+            
+            .cs_team_img img {
+                position: relative !important;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                transform: none !important;
+                transition: none !important;
+                z-index: 1 !important;
+            }
+            
+            /* Fix team text - NO ROTATION on mobile, always visible */
+            .cs_team_img .cs_team_text {
+                position: absolute !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+                transform-origin: center !important;
+                padding: 15px !important;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%) !important;
+                z-index: 2 !important;
+                opacity: 1 !important;
+                transition: none !important;
+            }
+            
+            .cs_team_img .cs_team_text .cs_team_text_title {
+                color: #fff !important;
+                font-size: 16px !important;
+                margin-bottom: 3px !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            
+            .cs_team_img:hover .cs_team_text {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            .cs_team_img:hover .cs_team_text .cs_team_text_title {
+                color: #fff !important;
+                transition: none !important;
+                transition-delay: 0s !important;
             }
             
             .cs_team_subtitle {
-                font-size: 13px;
+                font-size: 13px !important;
+                color: rgba(255, 255, 255, 0.8) !important;
+                margin: 0 !important;
+            }
+            
+            /* Remove overlay gradient that makes it hard to see */
+            .cs_team_img .cs_portfolio_overlay {
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, transparent 70%) !important;
+            }
+            
+            /* Override external CSS fixed heights that cause issues */
+            .cs_team_section[style*="height"] {
+                height: auto !important;
             }
             
             /* Height Spacing Adjustments */
@@ -698,10 +765,28 @@
                 width: 260px;
             }
             
-            /* Team - 2 Columns */
+            /* Team - 2 Columns - Keep simple layout */
             .cs_team_section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                height: auto !important;
+                min-height: auto !important;
+            }
+            
+            .cs_team_img {
+                aspect-ratio: 1 / 1.1 !important;
+            }
+            
+            .cs_team_img .cs_team_text {
+                padding: 12px !important;
+            }
+            
+            .cs_team_img .cs_team_text .cs_team_text_title {
+                font-size: 15px !important;
+            }
+            
+            .cs_team_subtitle {
+                font-size: 12px !important;
             }
             
             /* Height Spacing - Reduced */
@@ -774,8 +859,14 @@
             }
             
             .cs_team_section {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+                height: auto !important;
+                min-height: auto !important;
+            }
+            
+            .cs_team_img {
+                aspect-ratio: 1 / 1 !important;
             }
             
             /* Very Reduced Spacing */
@@ -824,17 +915,61 @@
             }
         }
         
-        /* Performance Optimizations for Mobile */
+        /* Performance Optimizations for Mobile - Heavy Scrolling Fix */
         @media screen and (max-width: 991px) {
+            /* Disable ScrollSmoother and heavy animations on mobile */
+            #scrollsmoother-container {
+                overflow: visible !important;
+                transform: none !important;
+            }
+            
+            /* Disable parallax effects on mobile */
+            .cs_parallax,
+            .cs_parallax_bg {
+                transform: none !important;
+                background-attachment: scroll !important;
+            }
+            
+            /* Disable GSAP animations on mobile */
+            .anim_div_ShowZoom,
+            .anim_div_ShowDowns,
+            .anim_div_ShowRightSide,
+            .anim_heading_title,
+            .cs_btn_anim {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
             /* Reduce animations on mobile */
             .cs_hero_animated_shapes,
             .cs_hero_particles {
                 animation-duration: 8s;
+                opacity: 0.3;
             }
             
             /* Optimize background images */
             .cs_about_bg.cs_bg {
                 background-attachment: scroll;
+            }
+            
+            /* Disable complex transforms during scroll */
+            * {
+                will-change: auto !important;
+            }
+            
+            /* Optimize scrolling performance */
+            body {
+                -webkit-overflow-scrolling: touch;
+                overflow-x: hidden;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+            
+            /* Reduce moving text animation speed */
+            .cs_moving_section {
+                animation-duration: 20s !important;
             }
         }
         
@@ -2274,6 +2409,51 @@
     <script src="assets/js/plugins/ScrollTrigger.min.js" defer></script>
     <script src="assets/js/plugins/ScrollSmoother.min.js" defer></script>
     <script src="assets/js/plugins/gsap.min.js" defer></script>
+    
+    <!-- Disable ScrollSmoother and heavy animations on mobile for better performance -->
+    <script>
+        (function() {
+            'use strict';
+            
+            // Detect mobile devices
+            function isMobile() {
+                return window.innerWidth <= 991 || 
+                       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+            
+            // Disable ScrollSmoother on mobile
+            if (isMobile()) {
+                // Add class to body for CSS targeting
+                document.body.classList.add('mobile-device');
+                
+                // Override ScrollSmoother if it exists
+                window.addEventListener('DOMContentLoaded', function() {
+                    if (window.ScrollSmoother && typeof window.ScrollSmoother.create === 'function') {
+                        // Create a no-op wrapper
+                        const originalCreate = window.ScrollSmoother.create;
+                        window.ScrollSmoother.create = function(config) {
+                            console.log('ScrollSmoother disabled on mobile for better performance');
+                            return {
+                                scrollTop: function() { return window.scrollY; },
+                                scrollTo: function() {},
+                                kill: function() {},
+                                refresh: function() {},
+                                pin: function() {},
+                                unpin: function() {}
+                            };
+                        };
+                    }
+                });
+                
+                // Disable GSAP ScrollTrigger on mobile
+                if (window.ScrollTrigger) {
+                    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+                    ScrollTrigger.config({ limitCallbacks: true });
+                }
+            }
+        })();
+    </script>
+    
     <script src="assets/js/main.js" defer></script>
     
     <!-- Scroll-Based Navbar Script - Only visible at top -->
