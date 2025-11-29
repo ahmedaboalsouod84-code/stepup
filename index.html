@@ -66,6 +66,33 @@
             transform: translateY(-100%);
         }
         
+        /* Hero Section - Static (No Slider) */
+        .cs_hero_section {
+            position: relative;
+            width: 100%;
+        }
+        
+        .cs_hero_section .cs_hero_mini_title {
+            -webkit-clip-path: inset(0 0% 0 0);
+            clip-path: inset(0 0% 0 0);
+            opacity: 1;
+        }
+        
+        .cs_hero_section .cs_hero_title,
+        .cs_hero_section .cs_hero_subtitle {
+            position: relative;
+            opacity: 1;
+            top: 0;
+        }
+        
+        .cs_hero_section .cs_hero_btn_wrap {
+            position: relative;
+            display: inline-block;
+            transform: rotate(0deg);
+            opacity: 1;
+            top: 0;
+        }
+        
         /* Animated Hero Background - Enhanced Motion Effects */
         @keyframes gradientShift {
             0% {
@@ -479,72 +506,67 @@
     <!-- End Header Section -->
     <div id="scrollsmoother-container">
         <!-- Start Hero -->
-        <section class="cs_slider cs_slider_1">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="cs_hero cs_style1 cs_center cs_parallax">
-                        <div class="cs_hero_animated_bg cs_hero_bg cs_bg cs_parallax_bg">
-                            <div class="cs_hero_bg_base"></div>
-                            <div class="cs_hero_gradient_overlay"></div>
-                            <div class="cs_hero_animated_shapes">
-                                <div class="cs_hero_shape"></div>
-                                <div class="cs_hero_shape"></div>
-                                <div class="cs_hero_shape"></div>
-                                <div class="cs_hero_shape"></div>
-                            </div>
-                            <div class="cs_hero_particles">
-                                <div class="cs_hero_particle"></div>
-                                <div class="cs_hero_particle"></div>
-                                <div class="cs_hero_particle"></div>
-                                <div class="cs_hero_particle"></div>
-                                <div class="cs_hero_particle"></div>
-                                <div class="cs_hero_particle"></div>
-                                <div class="cs_hero_particle"></div>
-                                <div class="cs_hero_particle"></div>
-                            </div>
-                            <div class="cs_hero_shimmer"></div>
+        <section class="cs_hero_section">
+            <div class="cs_hero cs_style1 cs_center cs_parallax">
+                <div class="cs_hero_animated_bg cs_hero_bg cs_bg cs_parallax_bg">
+                    <div class="cs_hero_bg_base"></div>
+                    <div class="cs_hero_gradient_overlay"></div>
+                    <div class="cs_hero_animated_shapes">
+                        <div class="cs_hero_shape"></div>
+                        <div class="cs_hero_shape"></div>
+                        <div class="cs_hero_shape"></div>
+                        <div class="cs_hero_shape"></div>
+                    </div>
+                    <div class="cs_hero_particles">
+                        <div class="cs_hero_particle"></div>
+                        <div class="cs_hero_particle"></div>
+                        <div class="cs_hero_particle"></div>
+                        <div class="cs_hero_particle"></div>
+                        <div class="cs_hero_particle"></div>
+                        <div class="cs_hero_particle"></div>
+                        <div class="cs_hero_particle"></div>
+                        <div class="cs_hero_particle"></div>
+                    </div>
+                    <div class="cs_hero_shimmer"></div>
+                </div>
+                <div class="container">
+                    <div class="cs_hero_text">
+                        <div class="cs_hero_mini_title" style="margin-top:12px;margin-left:20px">
+                            <svg width="134" height="12" viewBox="0 0 134 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M133.53 6.53033C133.823 6.23744 133.823 5.76256 133.53 5.46967L128.757 0.696699C128.464 0.403806 127.99 0.403806 127.697 0.696699C127.404 0.989593 127.404 1.46447 127.697 1.75736L131.939 6L127.697 10.2426C127.404 10.5355 127.404 11.0104 127.697 11.3033C127.99 11.5962 128.464 11.5962 128.757 11.3033L133.53 6.53033ZM0 6.75H133V5.25H0V6.75Z"
+                                    fill="#101010" />
+                            </svg> Creative Agency
                         </div>
-                        <div class="container">
-                            <div class="cs_hero_text">
-                                <div class="cs_hero_mini_title" style="margin-top:12px;margin-left:20px">
-                                    <svg width="134" height="12" viewBox="0 0 134 12" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M133.53 6.53033C133.823 6.23744 133.823 5.76256 133.53 5.46967L128.757 0.696699C128.464 0.403806 127.99 0.403806 127.697 0.696699C127.404 0.989593 127.404 1.46447 127.697 1.75736L131.939 6L127.697 10.2426C127.404 10.5355 127.404 11.0104 127.697 11.3033C127.99 11.5962 128.464 11.5962 128.757 11.3033L133.53 6.53033ZM0 6.75H133V5.25H0V6.75Z"
-                                            fill="#101010" />
-                                    </svg> Creative Agency
-                                </div>
-                                <div class="cs_height_20 cs_height_lg_20"></div>
-                                <h1 class="cs_hero_title" style="font-size:clamp(42px,6vw,72px);margin-left:20px">
-                                    Let Your Business <span style="color:#04a8ce">StepUp</span><br /> with Digital Service Experts
-                                </h1>
-                                <div class="cs_height_70 cs_height_lg_60"></div>
-                                <div class="cs_hero_text_in">
-                                    <div class="cs_hero_subtitle">
-                                        From advanced website development to system analysis, foundation, and building
-                                        modern digital infrastructures that keep pace with global innovation — welcome
-                                        to StepUp, the fastest-growing digital partner in the GCC. We empower ambitious
-                                        brands to accelerate their digital performance through integrated marketing
-                                        solutions, high-impact creative content, and data-driven execution. Our work
-                                        pushes every client metric upward — fast, smart, and consistently — starting
-                                        from the UAE and expanding across all GCC markets.
-                                    </div>
-                                    <div class="cs_height_65 cs_height_lg_40"></div>
-                                    <div class="cs_hero_btn_wrap">
-                                        <div class="cs_round_btn_wrap">
-                                            <a href="portfolio-dark.html"
-                                                class="cs_hero_btn cs_round_btn btn-item"><span></span>
-                                                Our
-                                                Projects</a>
-                                        </div>
-                                    </div>
+                        <div class="cs_height_20 cs_height_lg_20"></div>
+                        <h1 class="cs_hero_title" style="font-size:clamp(42px,6vw,72px);margin-left:20px">
+                            Let Your Business <span style="color:#04a8ce">StepUp</span><br /> with Digital Service Experts
+                        </h1>
+                        <div class="cs_height_70 cs_height_lg_60"></div>
+                        <div class="cs_hero_text_in">
+                            <div class="cs_hero_subtitle">
+                                From advanced website development to system analysis, foundation, and building
+                                modern digital infrastructures that keep pace with global innovation — welcome
+                                to StepUp, the fastest-growing digital partner in the GCC. We empower ambitious
+                                brands to accelerate their digital performance through integrated marketing
+                                solutions, high-impact creative content, and data-driven execution. Our work
+                                pushes every client metric upward — fast, smart, and consistently — starting
+                                from the UAE and expanding across all GCC markets.
+                            </div>
+                            <div class="cs_height_65 cs_height_lg_40"></div>
+                            <div class="cs_hero_btn_wrap">
+                                <div class="cs_round_btn_wrap">
+                                    <a href="portfolio-dark.html"
+                                        class="cs_hero_btn cs_round_btn btn-item"><span></span>
+                                        Our
+                                        Projects</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cs_pagination cs_style1"></div>
         </section>
         <!-- End Hero -->
         <div class="cs_height_130 cs_height_lg_60"></div>
