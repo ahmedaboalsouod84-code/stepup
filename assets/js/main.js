@@ -271,20 +271,52 @@
       });
     }
     if ($.exists(".cs_horizontal_scrolls")) {
+      // Mobile breakpoint detection
+      const isMobileView = window.innerWidth < 768;
+      
       var swiper = new Swiper(".cs_horizontal_scrolls", {
         loop: true,
         speed: 1000,
         autoplay: false,
-        slidesPerView: "auto",
-        centeredStartd: true,
+        slidesPerView: isMobileView ? 1 : "auto",
+        spaceBetween: isMobileView ? 0 : 15,
+        centeredSlides: isMobileView ? true : false,
+        centeredStartd: !isMobileView,
         navigation: {
           nextEl: ".cs_horizontal_scrolls .cs_swiper_button_next",
           prevEl: ".cs_horizontal_scrolls .cs_swiper_button_prev",
         },
         pagination: {
-          el: ".cs_pagination",
+          el: ".cs_horizontal_scrolls .cs_portfolio_pagination",
           clickable: true,
+          dynamicBullets: true,
         },
+        breakpoints: {
+          768: {
+            slidesPerView: "auto",
+            spaceBetween: 15,
+            centeredSlides: false,
+            centeredStartd: true,
+          }
+        },
+        on: {
+          init: function() {
+            // Update pagination on mobile
+            if (window.innerWidth < 768) {
+              this.pagination.render();
+              this.pagination.update();
+            }
+          },
+          resize: function() {
+            const isMobile = window.innerWidth < 768;
+            if (isMobile) {
+              this.params.slidesPerView = 1;
+              this.params.spaceBetween = 0;
+              this.params.centeredSlides = true;
+              this.update();
+            }
+          }
+        }
       });
     }
   }

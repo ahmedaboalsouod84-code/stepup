@@ -572,70 +572,162 @@
             
             /* Portfolio Horizontal Scroll - Mobile */
             .cs_horizontal_scroll_wrap {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+                overflow: visible;
                 position: relative;
             }
             
             .cs_horizontal_scrolls {
                 min-width: auto;
                 position: relative;
+                width: 100%;
+                overflow: hidden;
+                padding-bottom: 80px;
+            }
+            
+            .cs_horizontal_scrolls .swiper-wrapper {
+                display: flex;
+                align-items: stretch;
+            }
+            
+            .cs_horizontal_scrolls .swiper-slide {
+                width: 100% !important;
+                height: auto;
+                display: flex;
+                justify-content: center;
             }
             
             .cs_horizontal_scroll {
-                min-width: 280px;
-                width: 280px;
-                margin-right: 15px;
+                min-width: 100%;
+                width: 100%;
+                margin-right: 0;
+                margin-left: 0;
+            }
+            
+            .cs_portfolio.cs_style_1 {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 4 / 3;
+                overflow: hidden;
+                border-radius: 12px;
+                position: relative;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_overlay {
+                opacity: 0;
+                display: none;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_info {
+                padding: 20px 20px 0;
+                text-align: center;
+                position: static;
+                background: transparent;
+                z-index: 1;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_title {
-                font-size: clamp(20px, 4vw, 24px) !important;
+                font-size: clamp(22px, 5vw, 28px) !important;
+                margin-top: 0;
+                margin-bottom: 8px;
+                color: inherit;
             }
             
             .cs_portfolio.cs_style_1 .cs_portfolio_subtitle {
-                font-size: 14px;
+                font-size: 15px;
+                opacity: 0.8;
+                margin: 0;
             }
             
-            /* Portfolio Navigation Buttons - Mobile Only */
+            /* Portfolio Navigation Buttons - Mobile - Overlay on Image */
             .cs_horizontal_scrolls .cs_swiper_button_prev,
             .cs_horizontal_scrolls .cs_swiper_button_next {
                 display: flex !important;
                 position: absolute;
-                bottom: -60px;
-                z-index: 10;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 20;
                 width: 50px;
                 height: 50px;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                color: #04a8ce;
+                color: #fff;
                 transition: all 0.3s ease;
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(4, 168, 206, 0.9);
                 border-radius: 50%;
-                border: 1px solid rgba(4, 168, 206, 0.3);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_prev:hover,
             .cs_horizontal_scrolls .cs_swiper_button_next:hover {
-                background: rgba(4, 168, 206, 0.2);
-                color: #04a8ce;
-                transform: scale(1.1);
+                background: rgba(4, 168, 206, 1);
+                transform: translateY(-50%) scale(1.1);
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_prev {
-                left: 50%;
-                transform: translateX(-60px);
+                left: 15px;
+                transform: translateY(-50%);
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_next {
-                right: 50%;
-                transform: translateX(60px);
+                right: 15px;
+                transform: translateY(-50%);
             }
             
             .cs_horizontal_scrolls .cs_swiper_button_prev svg,
             .cs_horizontal_scrolls .cs_swiper_button_next svg {
-                width: 20px;
-                height: 20px;
+                width: 24px;
+                height: 24px;
+            }
+            
+            /* Portfolio Pagination Dots - Mobile */
+            .cs_horizontal_scrolls .cs_portfolio_pagination {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto !important;
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                z-index: 15;
+            }
+            
+            .cs_horizontal_scrolls .cs_portfolio_pagination .swiper-pagination-bullet {
+                width: 10px;
+                height: 10px;
+                background: rgba(255, 255, 255, 0.5);
+                opacity: 1;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+                margin: 0;
+            }
+            
+            .cs_horizontal_scrolls .cs_portfolio_pagination .swiper-pagination-bullet-active {
+                background: #04a8ce;
+                width: 24px;
+                border-radius: 5px;
+            }
+            
+            /* Hide pagination on desktop (>= 768px) */
+            @media screen and (min-width: 768px) {
+                .cs_horizontal_scrolls .cs_portfolio_pagination {
+                    display: none !important;
+                }
             }
             
             /* Team Section - Mobile Grid - COMPLETELY REDESIGNED FOR MOBILE */
@@ -772,6 +864,71 @@
             
             .cs_section_heading.cs_style_1 .cs_section_subtitle {
                 font-size: 13px;
+            }
+            
+            /* Portfolio Section - Mobile Carousel (< 768px) */
+            .cs_horizontal_scroll_wrap {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+            
+            .cs_horizontal_scrolls {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_img {
+                aspect-ratio: 16 / 10;
+                border-radius: 0;
+            }
+            
+            .cs_portfolio.cs_style_1 {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_info {
+                padding: 20px 15px 0;
+                text-align: left;
+                background: transparent;
+                position: static;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_overlay {
+                display: none;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_title {
+                font-size: clamp(20px, 5vw, 24px) !important;
+                margin-top: 0;
+                margin-bottom: 6px;
+                color: inherit;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_subtitle {
+                font-size: 14px;
+                margin: 0;
+            }
+            
+            /* Navigation buttons - smaller on very small screens */
+            .cs_horizontal_scrolls .cs_swiper_button_prev,
+            .cs_horizontal_scrolls .cs_swiper_button_next {
+                width: 44px;
+                height: 44px;
+                left: 10px;
+                right: 10px;
+            }
+            
+            .cs_horizontal_scrolls .cs_swiper_button_prev svg,
+            .cs_horizontal_scrolls .cs_swiper_button_next svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            /* Pagination dots - adjust position */
+            .cs_horizontal_scrolls .cs_portfolio_pagination {
+                bottom: 15px;
             }
             
             /* Moving Text - Smaller */
@@ -1779,6 +1936,8 @@
                 <div class="cs_swiper_button_next">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 0L8.2375 1.7625L15.2125 8.75H0V11.25H15.2125L8.225 18.225L10 20L20 10L10 0Z" fill="currentColor"/></svg>
                 </div>
+                <!-- Portfolio Pagination Dots -->
+                <div class="cs_portfolio_pagination swiper-pagination"></div>
             </div>
         </div>
         <!-- End Portfolio Section -->
