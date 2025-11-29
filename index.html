@@ -6,15 +6,305 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Thememarch" />
+    <meta name="author" content="StepUp" />
     <!-- Favicon Icon -->
-    <link rel="icon" href="assets/img/favicon.svg" />
+    <link rel="icon" type="image/png" href="assets/img/logo stepup w.png" />
     <!-- Site Title -->
     <title>StepUp | Growth Agency</title>
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="StepUp is a UAE-based growth agency specializing in digital marketing, creative design, content production, and exhibition execution across the Middle East." />
+        <meta name="keywords" content="digital marketing, SEO, web development, creative agency, UAE, Dubai, GCC, growth agency" />
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://stepuphub.cloud/" />
+        <meta property="og:title" content="StepUp | Growth Agency" />
+        <meta property="og:description" content="StepUp is a UAE-based growth agency specializing in digital marketing, creative design, content production, and exhibition execution across the Middle East." />
+        <meta property="og:image" content="https://stepuphub.cloud/assets/img/logo stepup w.png" />
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://stepuphub.cloud/" />
+        <meta property="twitter:title" content="StepUp | Growth Agency" />
+        <meta property="twitter:description" content="StepUp is a UAE-based growth agency specializing in digital marketing, creative design, content production, and exhibition execution across the Middle East." />
+        <meta property="twitter:image" content="https://stepuphub.cloud/assets/img/logo stepup w.png" />
+        
+        <!-- Resource Hints for Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        
+        <!-- DNS Prefetch for External Domains -->
+        <link rel="dns-prefetch" href="https://www.facebook.com" />
+        <link rel="dns-prefetch" href="https://www.linkedin.com" />
+        <link rel="dns-prefetch" href="https://www.instagram.com" />
+        <link rel="dns-prefetch" href="https://twitter.com" />
+        <link rel="dns-prefetch" href="https://dribbble.com" />
+        
+        <!-- Google Fonts - Optimized Async Loading -->
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;900&family=Kanit:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;900&family=Kanit:wght@400;500;600;700&display=swap" /></noscript>
+        
+        <!-- Preload Critical Resources -->
+        <link rel="preload" href="assets/img/hero_img_1.png" as="image" />
+        <link rel="preload" href="assets/css/plugins/bootstrap.min.css" as="style" />
+        
     <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css" />
     <link rel="stylesheet" href="assets/css/plugins/swiper.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+        /* Animated Hero Background - Enhanced Motion Effects */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 0%;
+            }
+            25% {
+                background-position: 100% 50%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            75% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+        
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-50px) translateX(30px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(-30px) translateX(50px) rotate(180deg);
+            }
+            75% {
+                transform: translateY(30px) translateX(-30px) rotate(270deg);
+            }
+        }
+        
+        @keyframes particleMove {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+        
+        @keyframes rotateSlow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        
+        .cs_hero_animated_bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .cs_hero_bg_base {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/img/hero_img_1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+        
+        .cs_hero_gradient_overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(4, 168, 206, 0.3) 0%, 
+                rgba(255, 107, 0, 0.3) 25%,
+                rgba(4, 168, 206, 0.3) 50%,
+                rgba(255, 107, 0, 0.3) 75%,
+                rgba(4, 168, 206, 0.3) 100%);
+            background-size: 300% 300%;
+            animation: gradientShift 10s ease infinite;
+            z-index: 2;
+            mix-blend-mode: screen;
+        }
+        
+        .cs_hero_animated_shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 3;
+        }
+        
+        .cs_hero_shape {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(4, 168, 206, 0.4) 0%, rgba(255, 107, 0, 0.2) 50%, transparent 70%);
+            filter: blur(40px);
+            animation: floatAnimation 15s ease-in-out infinite;
+        }
+        
+        .cs_hero_shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+        
+        .cs_hero_shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            right: 10%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+        
+        .cs_hero_shape:nth-child(3) {
+            width: 350px;
+            height: 350px;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 4s;
+            animation-duration: 20s;
+        }
+        
+        .cs_hero_shape:nth-child(4) {
+            width: 250px;
+            height: 250px;
+            top: 25%;
+            right: 25%;
+            animation-delay: 1s;
+            animation-duration: 16s;
+        }
+        
+        .cs_hero_particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 4;
+        }
+        
+        .cs_hero_particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(4, 168, 206, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(4, 168, 206, 0.6);
+            animation: particleMove 20s linear infinite;
+        }
+        
+        .cs_hero_particle:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 15s;
+        }
+        
+        .cs_hero_particle:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+        
+        .cs_hero_particle:nth-child(3) {
+            left: 30%;
+            animation-delay: 4s;
+            animation-duration: 22s;
+        }
+        
+        .cs_hero_particle:nth-child(4) {
+            left: 40%;
+            animation-delay: 1s;
+            animation-duration: 16s;
+        }
+        
+        .cs_hero_particle:nth-child(5) {
+            left: 50%;
+            animation-delay: 3s;
+            animation-duration: 19s;
+        }
+        
+        .cs_hero_particle:nth-child(6) {
+            left: 60%;
+            animation-delay: 5s;
+            animation-duration: 21s;
+        }
+        
+        .cs_hero_particle:nth-child(7) {
+            left: 70%;
+            animation-delay: 1.5s;
+            animation-duration: 17s;
+        }
+        
+        .cs_hero_particle:nth-child(8) {
+            left: 80%;
+            animation-delay: 3.5s;
+            animation-duration: 20s;
+        }
+        
+        .cs_hero_shimmer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+            z-index: 5;
+            pointer-events: none;
+        }
+    </style>
 </head>
 
 <body class="dark">
@@ -36,53 +326,61 @@
     </div>
     <!-- Start Header Section -->
     <header class="cs_site_header cs_style1 cs_sticky_header cs_site_header_full_width">
-        <div class="cs_main_header">
-            <div class="container">
-                <div class="cs_main_header_in">
-                    <div class="cs_main_header_left">
-                        <a class="cs_site_branding logo-dark" href="index.html">
-                            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
-                        </a>
-                        <a class="cs_site_branding logo-white" href="index.html">
-                            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
-                        </a>
+    <div class="cs_main_header">
+        <div class="container">
+            <div class="cs_main_header_in">
+                <div class="cs_main_header_left">
+                    <a class="cs_site_branding logo-dark" href="index.html">
+                        <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                    </a>
+                    <a class="cs_site_branding logo-white" href="index.html">
+                        <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                    </a>
+                </div>
+                <div class="cs_main_header_right">
+                    <div class="cs_nav cs_medium">
+                        <ul class="cs_nav_list">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about-dark.html">About</a></li>
+                            <li><a href="service-dark.html">Services</a></li>
+                            <li><a href="portfolio-dark.html">Portfolio</a></li>
+                            <li><a href="blog-dark.html">Blog</a></li>
+                            <li><a href="contact-dark.html">Contact Us</a></li>
+                        </ul>
                     </div>
-                    <div class="cs_main_header_right">
-                                                <div class="cs_nav cs_medium">
-                            <ul class="cs_nav_list">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="about-dark.html">About</a>
-                                </li>
-                                <li>
-                                    <a href="service-dark.html">Services</a>
-                                </li>
-                                <li>
-                                    <a href="portfolio-dark.html">Portfolio</a>
-                                </li>
-                                <li>
-                                    <a href="blog-dark.html">Blog</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="cs_toolbox">
-                            <span class="cs_icon_btn">
-                                <span class="cs_icon_btn_in">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </span>
+                    <div class="cs_toolbox">
+                        <span class="cs_icon_btn">
+                            <span class="cs_icon_btn_in">
+                                <span></span><span></span><span></span><span></span>
                             </span>
-                        </div>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-    <!-- menu -->
+    </div>
+</header>
+
+<div class="cs_side_header">
+    <button class="cs_close"></button>
+    <div class="cs_side_header_overlay"></div>
+    <div class="cs_side_header_in">
+        <a class="cs_site_branding" href="index.html">
+            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+        </a>
+        <div class="cs_nav_black_section cs_font_changes">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-dark.html">About</a></li>
+                <li><a href="service-dark.html">Services</a></li>
+                <li><a href="portfolio-dark.html">Portfolio</a></li>
+                <li><a href="blog-dark.html">Blog</a></li>
+                <li><a href="contact-dark.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <!--start menu -->
     <div class="cs_side_header">
         <button class="cs_close"></button>
         <div class="cs_side_header_overlay"></div>
@@ -93,7 +391,7 @@
             <div class="row align-items-end">
                 <div class="col-7">
                     <div class="cs_box_one">
-                                                <div class="cs_nav_black_section cs_font_changes">
+                        <div class="cs_nav_black_section cs_font_changes">
                             <ul>
                                 <li>
                                     <a href="index.html">Home</a>
@@ -110,6 +408,9 @@
                                 <li>
                                     <a href="blog-dark.html">Blog</a>
                                 </li>
+                                <li>
+                                    <a href="contact-dark.html">Contact Us</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -124,12 +425,11 @@
                                         d="M7 0.0195312C3.14027 0.0195312 0 3.01027 0 6.68621C0 7.78973 0.289693 8.88387 0.840408 9.85434L6.6172 17.8047C6.69411 17.9373 6.84065 18.0195 7 18.0195C7.15935 18.0195 7.30589 17.9373 7.3828 17.8047L13.1617 9.85105C13.7103 8.88387 14 7.78969 14 6.68617C14 3.01027 10.8597 0.0195312 7 0.0195312ZM7 10.0195C5.07014 10.0195 3.50002 8.52418 3.50002 6.68621C3.50002 4.84824 5.07014 3.35289 7 3.35289C8.92986 3.35289 10.5 4.84824 10.5 6.68621C10.5 8.52418 8.92986 10.0195 7 10.0195Z"
                                         fill="white"></path>
                                 </svg>
-                                <span class="ms-2">46 JOHN ST TORONTO ON <br />
-                                    &nbsp; &nbsp; &nbsp; &nbsp; M5V 3W2</span>
+                                <span class="ms-2">Clover Bay Tower Guide - Dubai, UAE</span>
                             </p>
 
                             <h4 class="cs_phone_number">
-                                <a href="tel:(406)555-0120">
+                                <a href="tel:+971529765321">
                                     <svg width="35" height="35" viewBox="0 0 18 19" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -141,20 +441,20 @@
                                         <path
                                             d="M15.1294 2.93344C13.5338 1.33791 11.5151 0.330398 9.28656 0.0195312L9.0918 1.40907C11.0169 1.67874 12.7623 2.55141 14.1406 3.92597C15.4477 5.23311 16.3054 6.88483 16.6163 8.70134L17.9983 8.46538C17.635 6.36047 16.6425 4.45033 15.1294 2.93344Z"
                                             fill="white"></path>
-                                    </svg><span class="ms-2">(406)555-0120</span></a>
+                                    </svg><span class="ms-2">+971529765321</span></a>
                             </h4>
 
                             <ul class="cs_social_link">
                                 <li><a href="https://www.facebook.com/">Facebook</a></li>
                                 <li><a href="https://www.linkedin.com/">Linkedin</a></li>
-                                <li><a href="https://www.instagram.com/">Instagram</a></li>
+                                <li><a href="https://www.instagram.com/stepuphub.marketing">Instagram</a></li>
                                 <li><a href="https://dribbble.com/">Dribbble</a></li>
                             </ul>
 
                             <hr class="mt-2 me-5 mb-2" />
                             <h2>
-                                <a href="mailto:info@email.com" class="cs_primary_font cs_text_btn"><span
-                                        class="cs_black">info@email.com</span></a>
+                                <a href="mailto:info@stepuphub.cloud" class="cs_primary_font cs_text_btn"><span
+                                        class="cs_black">info@stepuphub.cloud</span></a>
                             </h2>
                         </div>
                     </div>
@@ -170,11 +470,27 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="cs_hero cs_style1 cs_center cs_parallax">
-                        <video class="cs_hero_bg cs_bg cs_parallax_bg" autoplay muted loop playsinline
-                            poster="assets/img/hero_img_1.png" style="object-fit: cover;">
-                            <source src="assets/img/20251125_2353_New Video_simple_compose_01kay9835ve4b8rs57svh8hz13.mp4"
-                                type="video/mp4" />
-                        </video>
+                        <div class="cs_hero_animated_bg cs_hero_bg cs_bg cs_parallax_bg">
+                            <div class="cs_hero_bg_base"></div>
+                            <div class="cs_hero_gradient_overlay"></div>
+                            <div class="cs_hero_animated_shapes">
+                                <div class="cs_hero_shape"></div>
+                                <div class="cs_hero_shape"></div>
+                                <div class="cs_hero_shape"></div>
+                                <div class="cs_hero_shape"></div>
+                            </div>
+                            <div class="cs_hero_particles">
+                                <div class="cs_hero_particle"></div>
+                                <div class="cs_hero_particle"></div>
+                                <div class="cs_hero_particle"></div>
+                                <div class="cs_hero_particle"></div>
+                                <div class="cs_hero_particle"></div>
+                                <div class="cs_hero_particle"></div>
+                                <div class="cs_hero_particle"></div>
+                                <div class="cs_hero_particle"></div>
+                            </div>
+                            <div class="cs_hero_shimmer"></div>
+                        </div>
                         <div class="container">
                             <div class="cs_hero_text">
                                 <div class="cs_hero_mini_title" style="margin-top:12px;margin-left:20px">
@@ -203,7 +519,7 @@
                                     <div class="cs_height_65 cs_height_lg_40"></div>
                                     <div class="cs_hero_btn_wrap">
                                         <div class="cs_round_btn_wrap">
-                                            <a href="portfolio.html"
+                                            <a href="portfolio-dark.html"
                                                 class="cs_hero_btn cs_round_btn btn-item"><span></span>
                                                 Our
                                                 Projects</a>
@@ -369,7 +685,8 @@
                         <div class="cs_card_right">
                             <div class="cs_card_right_in">
                                 <h2 class="cs_card_title">
-                                    <a href="service-details.html" style="color:#04a8ce;">Search Marketing (SM)</a>
+                                    <a href="service-digital-marketing-dark.html" style="color:#04a8ce;">Search
+                                        Marketing (SM)</a>
                                 </h2>
                                 <div class="cs_card_subtitle">
                                     Enhance your digital visibility through advanced SEO, paid search campaigns, and
@@ -379,7 +696,7 @@
                             </div>
                         </div>
                         <div class="cs_card_link_wrap">
-                            <a href="service-details.html" class="cs_card_link">
+                            <a href="service-digital-marketing-dark.html" class="cs_card_link">
                                 <span>
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -414,7 +731,8 @@
                         <div class="cs_card_right">
                             <div class="cs_card_right_in">
                                 <h2 class="cs_card_title">
-                                    <a href="service-details.html" style="color:#04a8ce;">Social Media Marketing (SMM)</a>
+                                    <a href="service-digital-marketing-dark.html" style="color:#04a8ce;">Social Media
+                                        Marketing (SMM)</a>
                                 </h2>
                                 <div class="cs_card_subtitle">
                                     Grow your brand across all major platforms with high-impact content, smart
@@ -424,7 +742,7 @@
                             </div>
                         </div>
                         <div class="cs_card_link_wrap">
-                            <a href="service-details.html" class="cs_card_link">
+                            <a href="service-digital-marketing-dark.html" class="cs_card_link">
                                 <span>
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -459,7 +777,8 @@
                         <div class="cs_card_right">
                             <div class="cs_card_right_in">
                                 <h2 class="cs_card_title">
-                                    <a href="service-details.html" style="color:#04a8ce;">Content &amp; Creative (CC)</a>
+                                    <a href="service-web-development-dark.html" style="color:#04a8ce;">Content
+                                        &amp; Creative (CC)</a>
                                 </h2>
                                 <div class="cs_card_subtitle">
                                     From strategic content creation to modern web development and high-quality creative
@@ -469,7 +788,7 @@
                             </div>
                         </div>
                         <div class="cs_card_link_wrap">
-                            <a href="service-details.html" class="cs_card_link">
+                            <a href="service-web-development-dark.html" class="cs_card_link">
                                 <span>
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -504,7 +823,8 @@
                         <div class="cs_card_right">
                             <div class="cs_card_right_in">
                                 <h2 class="cs_card_title">
-                                    <a href="service-details.html" style="color:#04a8ce;">Performance &amp; CRO (PCRO)</a>
+                                    <a href="service-digital-services-dark.html" style="color:#04a8ce;">Performance
+                                        &amp; CRO (PCRO)</a>
                                 </h2>
                                 <div class="cs_card_subtitle">
                                     Optimize every stage of your digital funnel with performance marketing, conversion
@@ -514,7 +834,7 @@
                             </div>
                         </div>
                         <div class="cs_card_link_wrap">
-                            <a href="service-details.html" class="cs_card_link">
+                            <a href="service-digital-services-dark.html" class="cs_card_link">
                                 <span>
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -567,81 +887,81 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="cs_horizontal_scroll">
-                            <a href="portfolio-details.html" class="cs_portfolio cs_style_1">
+                            <a href="portfolio-aske-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_1.png" alt="Thumb" />
+                                    <img src="assets/img/portfolio_1.png" alt="Thumb" loading="lazy" />
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
                                     <h2 class="cs_portfolio_title" style="color:#e56c09;">
-                                        Web App
+                                        Aske Productivity Suite
                                     </h2>
-                                    <div class="cs_portfolio_subtitle"></div>
+                                    <div class="cs_portfolio_subtitle">Product Design / SaaS</div>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="cs_horizontal_scroll">
-                            <a href="portfolio-details.html" class="cs_portfolio cs_style_1">
+                            <a href="portfolio-analytics-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_4.png" alt="Thumb" />
+                                    <img src="assets/img/portfolio_4.png" alt="Thumb" loading="lazy" />
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
                                     <h2 class="cs_portfolio_title" style="color:#e56c09;">
-                                        Content Creation
+                                        Pulse Analytics
                                     </h2>
-                                    <div class="cs_portfolio_subtitle"></div>
+                                    <div class="cs_portfolio_subtitle">Data Platform</div>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="cs_horizontal_scroll">
-                            <a href="portfolio-details.html" class="cs_portfolio cs_style_1">
+                            <a href="portfolio-delivery-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_3.png" alt="Thumb" />
+                                    <img src="assets/img/portfolio_3.png" alt="Thumb" loading="lazy" />
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
                                     <h2 class="cs_portfolio_title" style="color:#e56c09;">
-                                        Social Media Ads
+                                        Delivery Go Launch
                                     </h2>
-                                    <div class="cs_portfolio_subtitle"></div>
+                                    <div class="cs_portfolio_subtitle">Campaign / Paid Media</div>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="cs_horizontal_scroll">
-                            <a href="" class="cs_portfolio cs_style_1">
+                            <a href="portfolio-branding-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_2.png" alt="Thumb" />
+                                    <img src="assets/img/portfolio_2.png" alt="Thumb" loading="lazy" />
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
                                     <h2 class="cs_portfolio_title" style="color:#e56c09;">
-                                        Podcast
+                                        StepVoice Podcast
                                     </h2>
-                                    <div class="cs_portfolio_subtitle"></div>
+                                    <div class="cs_portfolio_subtitle">Brand Identity</div>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="cs_horizontal_scroll">
-                            <a href="" class="cs_portfolio cs_style_1">
+                            <a href="portfolio-analytics-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_1.png" alt="Thumb" />
+                                    <img src="assets/img/portfolio_1.png" alt="Thumb" loading="lazy" />
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
                                     <h2 class="cs_portfolio_title">
-                                        Chatbot App
+                                        Insights Command Center
                                     </h2>
                                     <div class="cs_portfolio_subtitle">
-                                        Podcust<br />Meet the Stars
+                                        Growth Analytics
                                     </div>
                                 </div>
                             </a>
@@ -649,17 +969,17 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="cs_horizontal_scroll">
-                            <a href="portfolio-details.html" class="cs_portfolio cs_style_1">
+                            <a href="portfolio-delivery-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_2.png" alt="Thumb" />
+                                    <img src="assets/img/portfolio_2.png" alt="Thumb" loading="lazy" />
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
                                     <h2 class="cs_portfolio_title">
-                                        Chatbot App
+                                        GCC Courier Growth
                                     </h2>
                                     <div class="cs_portfolio_subtitle">
-                                        Read and Write
+                                        Performance Marketing
                                     </div>
                                 </div>
                             </a>
@@ -687,48 +1007,48 @@
                 <div class="cs_height_100 cs_height_lg_60"></div>
                 <div class="cs_team_section anim_div_ShowDowns">
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg1.png" alt="Mohamed Magdy" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg1.png" loading="lazy" alt="Mohamed Magdy" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Mohamed Magdy</h6>
                             </a>
                             <p class="cs_team_subtitle">Marketing Manager</p>
                         </div>
                     </div>
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg2.png" alt="Ali Mohamed" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg2.png" loading="lazy" alt="Ali Mohamed" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Ali Mohamed</h6>
                             </a>
                             <p class="cs_team_subtitle">CEO</p>
                         </div>
                     </div>
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg3.png" alt="Ismail Yasser" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg3.png" loading="lazy" alt="Ismail Yasser" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Ismail Yasser</h6>
                             </a>
                             <p class="cs_team_subtitle">Application Developer</p>
                         </div>
                     </div>
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg4.png" alt="Ahmed Ibrahim" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg4.png" loading="lazy" alt="Ahmed Ibrahim" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Ahmed Ibrahim</h6>
                             </a>
                             <p class="cs_team_subtitle">Digital Marketing Specialist</p>
@@ -738,48 +1058,48 @@
                 <div class="cs_height_20 cs_height_lg_20"></div>
                 <div class="cs_team_section anim_div_ShowDowns">
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg5.png" alt="Mayson Ahmed" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg5.png" loading="lazy" alt="Mayson Ahmed" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Mayson Ahmed</h6>
                             </a>
                             <p class="cs_team_subtitle">Data Analytics</p>
                         </div>
                     </div>
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg6.png" alt="teamsimg6" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg6.png" loading="lazy" alt="teamsimg6" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Laysa Patal</h6>
                             </a>
                             <p class="cs_team_subtitle">UI/UX Designer</p>
                         </div>
                     </div>
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg7.png" alt="teamsimg7" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg7.png" loading="lazy" alt="teamsimg7" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Ahmed Refaye</h6>
                             </a>
                             <p class="cs_team_subtitle">Content Cerator</p>
                         </div>
                     </div>
                     <div class="cs_team_img">
-                        <a href="team-details.html">
-                            <img src="assets/img/teamsimg8.png" alt="teamsimg8" />
+                        <a href="team-dark.html">
+                            <img src="assets/img/teamsimg8.png" loading="lazy" alt="teamsimg8" />
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
-                            <a href="team-details.html">
+                            <a href="team-dark.html">
                                 <h6 class="cs_team_text_title">Andrew Lopenza</h6>
                             </a>
                             <p class="cs_team_subtitle">UX Sketch Designer</p>
@@ -818,7 +1138,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4">
                         <div>
-                            <img src="assets/img/testimonial_thumb_1.jpg" alt="" class="w-100" />
+                            <img src="assets/img/testimonial_thumb_1.jpg" alt="" class="w-100" loading="lazy" />
                         </div>
                     </div>
                     <div class="col-lg-7 offset-lg-1">
@@ -846,7 +1166,8 @@
                                             </blockquote>
                                             <div class="cs_testimonial_meta">
                                                 <div class="cs_testimonial_avatar">
-                                                    <img src="assets/img/avatar_1.png" alt="Avatar" />
+                                                    <img src="assets/img/testimonial_uae_retailer.jpg" loading="lazy"
+                                                        alt="Portrait of UAE Retailer client" />
                                                 </div>
                                                 <div class="cs_testimonial_meta_right">
                                                     <h3 class="cs_testimonial_avatar_name">UAE Retailer</h3>
@@ -873,7 +1194,8 @@
                                             </blockquote>
                                             <div class="cs_testimonial_meta">
                                                 <div class="cs_testimonial_avatar">
-                                                    <img src="assets/img/avatar_1.png" alt="Avatar" />
+                                                    <img src="assets/img/testimonial_ksa_startup.jpg" loading="lazy"
+                                                        alt="Portrait of KSA Tech Startup founder" />
                                                 </div>
                                                 <div class="cs_testimonial_meta_right">
                                                     <h3 class="cs_testimonial_avatar_name">KSA Tech Startup</h3>
@@ -953,7 +1275,8 @@
             <div class="cs_parallax">
                 <a href="assets/img/video_block.mp4"
                     class="cs_video_block cs_style1 cs_video_open cs_bg cs_parallax_bg"
-                    data-src="assets/img/video_block.png">
+                    data-src="assets/img/video_block_thumb.jpg"
+                    style="background-image:url('assets/img/video_block_thumb.jpg');background-size:cover;background-position:center;">
                     <span class="cs_player_btn cs_accent_color">
                         <span></span>
                     </span>
@@ -976,7 +1299,7 @@
                         </h2>
                     </div>
                     <div class="cs_section_heading_right cs_btn_anim">
-                        <a href="blog.html" class="cs_btn cs_style_1">
+                        <a href="blog-dark.html" class="cs_btn cs_style_1">
                             <span>View All Blogs</span>
                             <svg width="19" height="13" viewBox="0 0 19 13" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -993,47 +1316,44 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/post_1.png" alt="Thumb" />
+                                    <img src="assets/img/blog_business_agency.jpg" loading="lazy" alt="Strategy workshop with marketing team" />
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
                                         <a href="blog-details.html">Reasons Business Needs a Agency</a>
                                     </h2>
                                     <p class="cs_m0">
-                                        The art of creative thinking could be a blog that explores the various ways in
-                                        which people.
+                                        Discover why partnering with a digital agency accelerates growth and drives measurable results for your business.
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
-                                <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/post_2.png" alt="Thumb" />
+                                <a href="blog-details-creative-agency.html" class="cs_post_thumb">
+                                    <img src="assets/img/blog_creative_agency.jpg" loading="lazy" alt="Creative team collaborating on ideas" />
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
-                                        <a href="blog-details.html">How a Creative Agency Can Help?</a>
+                                        <a href="blog-details-creative-agency.html">How a Creative Agency Can Help?</a>
                                     </h2>
                                     <p class="cs_m0">
-                                        The art of creative thinking could be a blog that explores the various ways in
-                                        which people.
+                                        Learn how creative agencies transform brands through strategic design, content, and visual storytelling.
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
-                                <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/post_3.png" alt="Thumb" />
+                                <a href="blog-details-marketing-budget.html" class="cs_post_thumb">
+                                    <img src="assets/img/blog_marketing_budget.jpg" loading="lazy" alt="Marketing budget analytics dashboard" />
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
-                                        <a href="blog-details.html">Maximizing Your Marketing Budget</a>
+                                        <a href="blog-details-marketing-budget.html">Maximizing Your Marketing Budget</a>
                                     </h2>
                                     <p class="cs_m0">
-                                        The art of creative thinking could be a blog that explores the various ways in
-                                        which people.
+                                        Get strategies to optimize your marketing spend and achieve maximum ROI from your digital campaigns.
                                     </p>
                                 </div>
                             </div>
@@ -1041,7 +1361,7 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/post_1.png" alt="Thumb" />
+                                    <img src="assets/img/blog_business_agency.jpg" loading="lazy" alt="Strategy workshop with marketing team" />
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
@@ -1056,32 +1376,30 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
-                                <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/post_2.png" alt="Thumb" />
+                                <a href="blog-details-creative-agency.html" class="cs_post_thumb">
+                                    <img src="assets/img/blog_creative_agency.jpg" loading="lazy" alt="Creative team collaborating on ideas" />
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
-                                        <a href="blog-details.html">How a Creative Agency Can Help?</a>
+                                        <a href="blog-details-creative-agency.html">How a Creative Agency Can Help?</a>
                                     </h2>
                                     <p class="cs_m0">
-                                        The art of creative thinking could be a blog that explores the various ways in
-                                        which people.
+                                        Learn how creative agencies transform brands through strategic design, content, and visual storytelling.
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
-                                <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/post_3.png" alt="Thumb" />
+                                <a href="blog-details-marketing-budget.html" class="cs_post_thumb">
+                                    <img src="assets/img/blog_marketing_budget.jpg" loading="lazy" alt="Marketing budget analytics dashboard" />
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
-                                        <a href="blog-details.html">Maximizing Your Marketing Budget</a>
+                                        <a href="blog-details-marketing-budget.html">Maximizing Your Marketing Budget</a>
                                     </h2>
                                     <p class="cs_m0">
-                                        The art of creative thinking could be a blog that explores the various ways in
-                                        which people.
+                                        Get strategies to optimize your marketing spend and achieve maximum ROI from your digital campaigns.
                                     </p>
                                 </div>
                             </div>
@@ -1149,62 +1467,62 @@
                 <div class="cs_moving_section cs_animation_speed_40">
                     <div class="cs_partner_logo_wrap">
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_1.svg" alt="Partner" />
+                            <img src="assets/img/partner_1.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_2.svg" alt="Partner" />
+                            <img src="assets/img/partner_2.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_3.svg" alt="Partner" />
+                            <img src="assets/img/partner_3.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_4.svg" alt="Partner" />
+                            <img src="assets/img/partner_4.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_5.svg" alt="Partner" />
+                            <img src="assets/img/partner_5.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_6.svg" alt="Partner" />
+                            <img src="assets/img/partner_6.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_7.svg" alt="Partner" />
+                            <img src="assets/img/partner_7.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_8.svg" alt="Partner" />
+                            <img src="assets/img/partner_8.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_11.svg" alt="Partner" />
+                            <img src="assets/img/partner_11.svg" alt="Partner" loading="lazy" />
                         </div>
                     </div>
                 </div>
                 <div class="cs_moving_section cs_animation_speed_40">
                     <div class="cs_partner_logo_wrap">
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_1.svg" alt="Partner" />
+                            <img src="assets/img/partner_1.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_2.svg" alt="Partner" />
+                            <img src="assets/img/partner_2.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_3.svg" alt="Partner" />
+                            <img src="assets/img/partner_3.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_4.svg" alt="Partner" />
+                            <img src="assets/img/partner_4.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_5.svg" alt="Partner" />
+                            <img src="assets/img/partner_5.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_6.svg" alt="Partner" />
+                            <img src="assets/img/partner_6.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_7.svg" alt="Partner" />
+                            <img src="assets/img/partner_7.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_8.svg" alt="Partner" />
+                            <img src="assets/img/partner_8.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_11.svg" alt="Partner" />
+                            <img src="assets/img/partner_11.svg" alt="Partner" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -1216,62 +1534,62 @@
                 <div class="cs_moving_section cs_animation_speed_50">
                     <div class="cs_partner_logo_wrap">
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_9.svg" alt="Partner" />
+                            <img src="assets/img/partner_9.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_10.svg" alt="Partner" />
+                            <img src="assets/img/partner_10.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_11.svg" alt="Partner" />
+                            <img src="assets/img/partner_11.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_12.svg" alt="Partner" />
+                            <img src="assets/img/partner_12.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_13.svg" alt="Partner" />
+                            <img src="assets/img/partner_13.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_14.svg" alt="Partner" />
+                            <img src="assets/img/partner_14.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_15.svg" alt="Partner" />
+                            <img src="assets/img/partner_15.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_1.svg" alt="Partner" />
+                            <img src="assets/img/partner_1.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_3.svg" alt="Partner" />
+                            <img src="assets/img/partner_3.svg" alt="Partner" loading="lazy" />
                         </div>
                     </div>
                 </div>
                 <div class="cs_moving_section cs_animation_speed_50">
                     <div class="cs_partner_logo_wrap">
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_9.svg" alt="Partner" />
+                            <img src="assets/img/partner_9.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_10.svg" alt="Partner" />
+                            <img src="assets/img/partner_10.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_11.svg" alt="Partner" />
+                            <img src="assets/img/partner_11.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_12.svg" alt="Partner" />
+                            <img src="assets/img/partner_12.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_13.svg" alt="Partner" />
+                            <img src="assets/img/partner_13.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_14.svg" alt="Partner" />
+                            <img src="assets/img/partner_14.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_15.svg" alt="Partner" />
+                            <img src="assets/img/partner_15.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_1.svg" alt="Partner" />
+                            <img src="assets/img/partner_1.svg" alt="Partner" loading="lazy" />
                         </div>
                         <div class="cs_partner_logo">
-                            <img src="assets/img/partner_3.svg" alt="Partner" />
+                            <img src="assets/img/partner_3.svg" alt="Partner" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -1300,7 +1618,7 @@
                         <div class="cs_footer_social">
                             <a href="https://www.facebook.com/profile.php?id=61584342479325" class="cs_center">Facebook</a>
                             <a href="https://www.linkedin.com/" class="cs_center">Linkedin</a>
-                            <a href="https://www.instagram.com/" class="cs_center">Instagram</a>
+                            <a href="https://www.instagram.com/stepuphub.marketing" class="cs_center">Instagram</a>
                             <a href="https://twitter.com/" class="cs_center">Twitter</a>
                             <a href="https://dribbble.com/" class="cs_center">Dribbble</a>
                         </div>
@@ -1354,27 +1672,17 @@
                     <li><a href="about.html">ABOUT</a></li>
                     <li><a href="service.html">SERVICES</a></li>
                     <li><a href="portfolio.html">PORTFOLIO</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
-                    <li><a href="contact.html">CONTACT US</a></li>
+                    <li><a href="blog-dark.html">BLOG</a></li>
+            <li><a href="contact-dark.html">CONTACT US</a></li>
                 </ul>
             </div>
             <div class="cs_copyright text-center">
-                <div class="container">Copyright 2023, All Right reserved</div>
+                <div class="container">Copyright 2025 StepUp. All rights reserved.</div>
             </div>
         </footer>
         <!-- End Footer -->
     </div>
 
-    <div class="cs_toggle">
-        <div class="setting_mode">
-            <button id="open"><img src="assets/img/brightnes.svg" alt="..."></button>
-            <button id="clecel"><img src="assets/img/close.svg" alt="..."></button>
-        </div>
-        <div class="cs_mode_btn js-mode-type">
-            <button data-mode="light">Light</button>
-            <button class="active" data-mode="dark">Dark</button>
-        </div>
-    </div>
     <span class="cs_scrollup">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 10L1.7625 11.7625L8.75 4.7875V20H11.25V4.7875L18.225 11.775L20 10L10 0L0 10Z"
@@ -1399,15 +1707,15 @@
     <!-- End Video Popup -->
     <!-- Script -->
     <script src="assets/js/plugins/jquery-3.7.0.min.js"></script>
-    <script src="assets/js/plugins/isotope.pkg.min.js"></script>
-    <script src="assets/js/plugins/swiper.min.js"></script>
-    <script src="assets/js/plugins/lightgallery.min.js"></script>
-    <script src="assets/js/plugins/SplitText.min.js"></script>
-    <script src="assets/js/plugins/ScrollToPlugin.min.js"></script>
-    <script src="assets/js/plugins/ScrollTrigger.min.js"></script>
-    <script src="assets/js/plugins/ScrollSmoother.min.js"></script>
-    <script src="assets/js/plugins/gsap.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/plugins/isotope.pkg.min.js" defer></script>
+    <script src="assets/js/plugins/swiper.min.js" defer></script>
+    <script src="assets/js/plugins/lightgallery.min.js" defer></script>
+    <script src="assets/js/plugins/SplitText.min.js" defer></script>
+    <script src="assets/js/plugins/ScrollToPlugin.min.js" defer></script>
+    <script src="assets/js/plugins/ScrollTrigger.min.js" defer></script>
+    <script src="assets/js/plugins/ScrollSmoother.min.js" defer></script>
+    <script src="assets/js/plugins/gsap.min.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 
 </html>

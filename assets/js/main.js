@@ -3,7 +3,7 @@
 
   /*
 |--------------------------------------------------------------------------
-| Template Name: Vixan
+| Template Name: StepUp
 | Author: Thememarch
 | Version: 1.0.0
 |--------------------------------------------------------------------------
@@ -507,6 +507,31 @@
     effects: widthall > 991 ? true : false,
     smoothTouch: true,
   });
+
+  /*--------------------------------------------------------------
+        Anchor Scroll Helper (for hashes + ScrollSmoother)
+  --------------------------------------------------------------*/
+  function scrollToHashTarget() {
+    const rawHash = window.location.hash;
+    if (!rawHash) return;
+    let target;
+    try {
+      target = document.querySelector(decodeURIComponent(rawHash));
+    } catch (error) {
+      target = document.querySelector(rawHash);
+    }
+    if (!target) return;
+    setTimeout(() => {
+      if (smoother && typeof smoother.scrollTo === "function") {
+        smoother.scrollTo(target, true);
+      } else {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 200);
+  }
+
+  window.addEventListener("load", scrollToHashTarget);
+  window.addEventListener("hashchange", scrollToHashTarget);
 
   /*--------------------------------------------------------------
         16. Cursor Moving
