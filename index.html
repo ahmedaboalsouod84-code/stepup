@@ -93,6 +93,124 @@
             top: 0;
         }
         
+        /* Mobile Optimizations for Hero Section */
+        @media screen and (max-width: 991px) {
+            .cs_hero_section .cs_hero {
+                min-height: auto;
+                padding: 80px 0 60px;
+            }
+            
+            .cs_hero_section .cs_hero_text {
+                text-align: center;
+            }
+            
+            .cs_hero_section .cs_hero_mini_title {
+                margin-left: 0 !important;
+                margin-top: 0 !important;
+                font-size: 14px;
+            }
+            
+            .cs_hero_section .cs_hero_mini_title svg {
+                width: 100px;
+                height: 10px;
+            }
+            
+            .cs_hero_section .cs_hero_title {
+                margin-left: 0 !important;
+                font-size: clamp(32px, 8vw, 48px) !important;
+                line-height: 1.2;
+                margin-bottom: 20px;
+            }
+            
+            .cs_hero_section .cs_hero_text_in {
+                padding-left: 0;
+            }
+            
+            .cs_hero_section .cs_hero_subtitle {
+                font-size: 16px;
+                line-height: 1.6;
+                padding: 0 15px;
+            }
+            
+            .cs_hero_section .cs_hero_btn_wrap {
+                margin-top: 30px;
+            }
+            
+            /* Reduce background opacity on mobile for better text readability */
+            .cs_hero_section .cs_hero_bg {
+                opacity: 0.15;
+            }
+            
+            /* Reduce particle animations on mobile for performance */
+            .cs_hero_section .cs_hero_particles {
+                opacity: 0.3;
+            }
+        }
+        
+        @media screen and (max-width: 767px) {
+            .cs_hero_section .cs_hero {
+                padding: 60px 0 40px;
+            }
+            
+            .cs_hero_section .cs_hero_title {
+                font-size: clamp(28px, 7vw, 40px) !important;
+                margin-bottom: 15px;
+            }
+            
+            .cs_hero_section .cs_hero_subtitle {
+                font-size: 15px;
+                line-height: 1.5;
+                padding: 0 10px;
+            }
+            
+            .cs_hero_section .cs_hero_mini_title {
+                font-size: 12px;
+            }
+            
+            .cs_hero_section .cs_hero_mini_title svg {
+                width: 80px;
+                height: 8px;
+            }
+            
+            /* Further reduce background on small screens */
+            .cs_hero_section .cs_hero_bg {
+                opacity: 0.1;
+            }
+            
+            .cs_hero_section .cs_hero_particles {
+                opacity: 0.2;
+            }
+            
+            /* Adjust spacing */
+            .cs_hero_section .cs_height_70 {
+                height: 30px;
+            }
+            
+            .cs_hero_section .cs_height_65 {
+                height: 25px;
+            }
+        }
+        
+        @media screen and (max-width: 575px) {
+            .cs_hero_section .cs_hero {
+                padding: 50px 0 30px;
+            }
+            
+            .cs_hero_section .cs_hero_title {
+                font-size: clamp(24px, 6vw, 36px) !important;
+            }
+            
+            .cs_hero_section .cs_hero_subtitle {
+                font-size: 14px;
+                padding: 0 5px;
+            }
+            
+            .cs_hero_section .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+        
         /* Animated Hero Background - Enhanced Motion Effects */
         @keyframes gradientShift {
             0% {
@@ -343,6 +461,412 @@
             animation: shimmer 3s ease-in-out infinite;
             z-index: 5;
             pointer-events: none;
+        }
+        
+        /* ========================================
+           COMPREHENSIVE RESPONSIVE OPTIMIZATIONS
+           For Mobile, Tablet, and Desktop
+           ======================================== */
+        
+        /* Global Container & Spacing Optimizations */
+        @media screen and (max-width: 991px) {
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Section Headings - Responsive Typography */
+            .cs_section_heading.cs_style_1 .cs_section_title {
+                font-size: clamp(28px, 5vw, 42px) !important;
+                line-height: 1.3;
+            }
+            
+            .cs_section_heading.cs_style_1 .cs_section_subtitle {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .cs_section_heading.cs_style_1.cs_type_1 {
+                flex-direction: column;
+                align-items: flex-start !important;
+            }
+            
+            .cs_section_heading.cs_style_1.cs_type_1 .cs_section_heading_right {
+                margin-top: 25px;
+                width: 100%;
+            }
+            
+            .cs_section_heading.cs_style_1.cs_type_2 {
+                text-align: left !important;
+            }
+            
+            /* Moving Text Sections - Mobile Optimization */
+            .cs_moving_section_wrap {
+                padding: 20px 0;
+            }
+            
+            .cs_moving_section.cs_stroke_text {
+                font-size: clamp(24px, 8vw, 48px);
+                padding: 10px 0;
+            }
+            
+            /* About Slider Section */
+            .cs_about.cs_style_1 {
+                min-height: 400px;
+            }
+            
+            .cs_about.cs_style_1 .cs_about_text {
+                padding: 40px 20px;
+            }
+            
+            .cs_about.cs_style_1 .cs_section_title {
+                font-size: clamp(24px, 5vw, 32px) !important;
+                line-height: 1.3;
+            }
+            
+            .cs_about.cs_style_1 .cs_section_subtitle {
+                font-size: 14px;
+            }
+            
+            .cs_about.cs_style_1 p,
+            .cs_about.cs_style_1 ul {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            
+            /* Service Cards - Mobile Layout */
+            .cs_card.cs_style_1 {
+                flex-direction: column;
+                padding: 30px 20px;
+                margin-bottom: 20px;
+            }
+            
+            .cs_card.cs_style_1 .cs_card_left {
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            
+            .cs_card.cs_style_1 .cs_card_number {
+                font-size: 48px;
+            }
+            
+            .cs_card.cs_style_1 .cs_card_title {
+                font-size: clamp(22px, 4vw, 28px);
+                margin-bottom: 15px;
+            }
+            
+            .cs_card.cs_style_1 .cs_card_subtitle {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            
+            .cs_card.cs_style_1 .cs_card_link_wrap {
+                margin-top: 20px;
+            }
+            
+            /* Portfolio Horizontal Scroll - Mobile */
+            .cs_horizontal_scroll_wrap {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .cs_horizontal_scrolls {
+                min-width: auto;
+            }
+            
+            .cs_horizontal_scroll {
+                min-width: 280px;
+                width: 280px;
+                margin-right: 15px;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_title {
+                font-size: clamp(20px, 4vw, 24px) !important;
+            }
+            
+            .cs_portfolio.cs_style_1 .cs_portfolio_subtitle {
+                font-size: 14px;
+            }
+            
+            /* Team Section - Mobile Grid */
+            .cs_team_section {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .cs_team_img {
+                width: 100%;
+            }
+            
+            .cs_team_text_title {
+                font-size: 16px;
+            }
+            
+            .cs_team_subtitle {
+                font-size: 13px;
+            }
+            
+            /* Height Spacing Adjustments */
+            .cs_height_150,
+            .cs_height_145,
+            .cs_height_130,
+            .cs_height_100 {
+                height: 40px !important;
+            }
+            
+            /* Swiper Navigation - Mobile */
+            .cs_swiper_button_prev,
+            .cs_swiper_button_next {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .cs_swiper_button_prev svg,
+            .cs_swiper_button_next svg {
+                width: 50px;
+                height: 20px;
+            }
+            
+            /* Buttons - Mobile Touch Targets */
+            .cs_btn {
+                padding: 14px 24px;
+                font-size: 15px;
+                min-height: 48px;
+            }
+            
+            .cs_round_btn {
+                padding: 14px 28px;
+                font-size: 15px;
+                min-height: 48px;
+            }
+        }
+        
+        @media screen and (max-width: 767px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            /* Section Headings - Small Mobile */
+            .cs_section_heading.cs_style_1 .cs_section_title {
+                font-size: clamp(24px, 6vw, 36px) !important;
+            }
+            
+            .cs_section_heading.cs_style_1 .cs_section_subtitle {
+                font-size: 13px;
+            }
+            
+            /* Moving Text - Smaller */
+            .cs_moving_section.cs_stroke_text {
+                font-size: clamp(20px, 7vw, 36px);
+            }
+            
+            /* About Section - Compact */
+            .cs_about.cs_style_1 {
+                min-height: 350px;
+            }
+            
+            .cs_about.cs_style_1 .cs_about_text {
+                padding: 30px 15px;
+            }
+            
+            .cs_about.cs_style_1 .cs_section_title {
+                font-size: clamp(22px, 5vw, 28px) !important;
+            }
+            
+            /* Service Cards - Stacked */
+            .cs_card.cs_style_1 {
+                padding: 25px 15px;
+            }
+            
+            .cs_card.cs_style_1 .cs_card_number {
+                font-size: 40px;
+            }
+            
+            .cs_card.cs_style_1 .cs_card_title {
+                font-size: clamp(20px, 4vw, 24px);
+            }
+            
+            .cs_card.cs_style_1 .cs_card_subtitle {
+                font-size: 14px;
+            }
+            
+            /* Portfolio - Single Column Feel */
+            .cs_horizontal_scroll {
+                min-width: 260px;
+                width: 260px;
+            }
+            
+            /* Team - 2 Columns */
+            .cs_team_section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            /* Height Spacing - Reduced */
+            .cs_height_150,
+            .cs_height_145,
+            .cs_height_130,
+            .cs_height_100 {
+                height: 30px !important;
+            }
+            
+            .cs_height_70 {
+                height: 20px !important;
+            }
+            
+            .cs_height_65 {
+                height: 20px !important;
+            }
+            
+            .cs_height_50 {
+                height: 15px !important;
+            }
+            
+            .cs_height_40 {
+                height: 15px !important;
+            }
+            
+            /* Buttons - Touch Optimized */
+            .cs_btn,
+            .cs_round_btn {
+                padding: 12px 20px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            /* Section Heading Buttons */
+            .cs_section_heading_right .cs_btn {
+                width: auto;
+                max-width: none;
+            }
+        }
+        
+        @media screen and (max-width: 575px) {
+            .container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+            
+            /* Extra Small Mobile Optimizations */
+            .cs_section_heading.cs_style_1 .cs_section_title {
+                font-size: clamp(20px, 7vw, 32px) !important;
+            }
+            
+            .cs_moving_section.cs_stroke_text {
+                font-size: clamp(18px, 6vw, 28px);
+            }
+            
+            .cs_about.cs_style_1 .cs_about_text {
+                padding: 25px 12px;
+            }
+            
+            .cs_card.cs_style_1 {
+                padding: 20px 12px;
+            }
+            
+            .cs_horizontal_scroll {
+                min-width: 240px;
+                width: 240px;
+            }
+            
+            .cs_team_section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Very Reduced Spacing */
+            .cs_height_150,
+            .cs_height_145,
+            .cs_height_130 {
+                height: 25px !important;
+            }
+        }
+        
+        /* Tablet Landscape (992px - 1199px) Optimizations */
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+            .container {
+                max-width: 960px;
+            }
+            
+            .cs_section_heading.cs_style_1 .cs_section_title {
+                font-size: clamp(32px, 4vw, 48px);
+            }
+            
+            .cs_card.cs_style_1 .cs_card_title {
+                font-size: clamp(24px, 3vw, 32px);
+            }
+        }
+        
+        /* Large Desktop Optimizations */
+        @media screen and (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+            }
+        }
+        
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            /* Improve touch targets */
+            .cs_btn,
+            .cs_round_btn,
+            .cs_card_link,
+            a {
+                -webkit-tap-highlight-color: rgba(4, 168, 206, 0.2);
+            }
+            
+            /* Disable hover effects on touch devices */
+            .cs_card.cs_style_1:hover .cs_card_link_wrap {
+                transform: none;
+            }
+        }
+        
+        /* Performance Optimizations for Mobile */
+        @media screen and (max-width: 991px) {
+            /* Reduce animations on mobile */
+            .cs_hero_animated_shapes,
+            .cs_hero_particles {
+                animation-duration: 8s;
+            }
+            
+            /* Optimize background images */
+            .cs_about_bg.cs_bg {
+                background-attachment: scroll;
+            }
+        }
+        
+        /* Image Optimization */
+        @media screen and (max-width: 991px) {
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            .cs_portfolio_img img,
+            .cs_team_img img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+        
+        /* Accessibility Improvements */
+        @media screen and (max-width: 991px) {
+            /* Ensure text is readable */
+            body {
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+            
+            /* Improve focus states for mobile */
+            a:focus,
+            button:focus {
+                outline: 2px solid #04a8ce;
+                outline-offset: 2px;
+            }
         }
     </style>
 </head>
