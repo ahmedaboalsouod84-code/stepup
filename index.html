@@ -468,6 +468,12 @@
            For Mobile, Tablet, and Desktop
            ======================================== */
         
+        /* Portfolio Navigation Buttons - Hidden on Desktop */
+        .cs_horizontal_scrolls .cs_swiper_button_prev,
+        .cs_horizontal_scrolls .cs_swiper_button_next {
+            display: none;
+        }
+        
         /* Global Container & Spacing Optimizations */
         @media screen and (max-width: 991px) {
             .container {
@@ -568,10 +574,12 @@
             .cs_horizontal_scroll_wrap {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
+                position: relative;
             }
             
             .cs_horizontal_scrolls {
                 min-width: auto;
+                position: relative;
             }
             
             .cs_horizontal_scroll {
@@ -586,6 +594,48 @@
             
             .cs_portfolio.cs_style_1 .cs_portfolio_subtitle {
                 font-size: 14px;
+            }
+            
+            /* Portfolio Navigation Buttons - Mobile Only */
+            .cs_horizontal_scrolls .cs_swiper_button_prev,
+            .cs_horizontal_scrolls .cs_swiper_button_next {
+                display: flex !important;
+                position: absolute;
+                bottom: -60px;
+                z-index: 10;
+                width: 50px;
+                height: 50px;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                color: #04a8ce;
+                transition: all 0.3s ease;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                border: 1px solid rgba(4, 168, 206, 0.3);
+            }
+            
+            .cs_horizontal_scrolls .cs_swiper_button_prev:hover,
+            .cs_horizontal_scrolls .cs_swiper_button_next:hover {
+                background: rgba(4, 168, 206, 0.2);
+                color: #04a8ce;
+                transform: scale(1.1);
+            }
+            
+            .cs_horizontal_scrolls .cs_swiper_button_prev {
+                left: 50%;
+                transform: translateX(-60px);
+            }
+            
+            .cs_horizontal_scrolls .cs_swiper_button_next {
+                right: 50%;
+                transform: translateX(60px);
+            }
+            
+            .cs_horizontal_scrolls .cs_swiper_button_prev svg,
+            .cs_horizontal_scrolls .cs_swiper_button_next svg {
+                width: 20px;
+                height: 20px;
             }
             
             /* Team Section - Mobile Grid - COMPLETELY REDESIGNED FOR MOBILE */
@@ -1045,185 +1095,6 @@
                 outline-offset: 2px;
             }
         }
-        
-        /* ========================================
-           MOBILE SERVICES CAROUSEL
-           Visible only on mobile (< 768px)
-           ======================================== */
-        
-        /* Hide mobile carousel on desktop */
-        .cs_services_mobile_carousel {
-            display: none;
-        }
-        
-        /* Hide desktop cards on mobile */
-        @media screen and (max-width: 767px) {
-            .cs_service_cards_desktop {
-                display: none !important;
-            }
-            
-            /* Show mobile carousel */
-            .cs_services_mobile_carousel {
-                display: block;
-                width: 100%;
-                margin: 30px 0;
-            }
-            
-            .cs_services_carousel_swiper {
-                width: 100%;
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .cs_service_carousel_slide {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            /* Large Image Container */
-            .cs_service_carousel_image {
-                width: 100%;
-                height: 400px;
-                overflow: hidden;
-                border-radius: 12px;
-                margin-bottom: 25px;
-                position: relative;
-            }
-            
-            .cs_service_carousel_image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
-            
-            /* Content Section */
-            .cs_service_carousel_content {
-                text-align: center;
-                padding: 0 20px;
-                max-width: 100%;
-            }
-            
-            .cs_service_carousel_title {
-                font-size: clamp(24px, 5vw, 28px);
-                font-weight: 700;
-                color: #04a8ce;
-                margin-bottom: 15px;
-                line-height: 1.3;
-            }
-            
-            .cs_service_carousel_desc {
-                font-size: 16px;
-                line-height: 1.6;
-                color: rgba(255, 255, 255, 0.9);
-                margin: 0;
-            }
-            
-            /* Navigation Arrows */
-            .cs_service_carousel_nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                padding: 0 15px;
-                pointer-events: none;
-                z-index: 10;
-            }
-            
-            .cs_service_carousel_prev,
-            .cs_service_carousel_next {
-                width: 50px;
-                height: 50px;
-                background: rgba(4, 168, 206, 0.9);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                pointer-events: all;
-                transition: all 0.3s ease;
-                border: 2px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            }
-            
-            .cs_service_carousel_prev:hover,
-            .cs_service_carousel_next:hover {
-                background: rgba(4, 168, 206, 1);
-                transform: scale(1.1);
-            }
-            
-            .cs_service_carousel_prev svg,
-            .cs_service_carousel_next svg {
-                width: 24px;
-                height: 24px;
-                color: #fff;
-                stroke: #fff;
-            }
-            
-            /* Pagination Dots */
-            .cs_service_carousel_pagination {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                margin-top: 30px;
-                padding: 0 20px;
-            }
-            
-            .cs_service_carousel_pagination .swiper-pagination-bullet {
-                width: 10px;
-                height: 10px;
-                background: rgba(255, 255, 255, 0.4);
-                border-radius: 50%;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                opacity: 1;
-            }
-            
-            .cs_service_carousel_pagination .swiper-pagination-bullet-active {
-                background: #04a8ce;
-                width: 30px;
-                border-radius: 5px;
-                box-shadow: 0 2px 8px rgba(4, 168, 206, 0.5);
-            }
-        }
-        
-        /* Smaller mobile adjustments */
-        @media screen and (max-width: 575px) {
-            .cs_service_carousel_image {
-                height: 350px;
-                border-radius: 8px;
-                margin-bottom: 20px;
-            }
-            
-            .cs_service_carousel_title {
-                font-size: 22px;
-                margin-bottom: 12px;
-            }
-            
-            .cs_service_carousel_desc {
-                font-size: 15px;
-            }
-            
-            .cs_service_carousel_prev,
-            .cs_service_carousel_next {
-                width: 45px;
-                height: 45px;
-                padding: 0 12px;
-            }
-            
-            .cs_service_carousel_nav {
-                padding: 0 10px;
-            }
-            
-            .cs_service_carousel_pagination {
-                margin-top: 25px;
-            }
-        }
     </style>
 </head>
 
@@ -1571,14 +1442,11 @@
                 <div class="cs_section_heading cs_style_1 cs_type_1 cs_color_1">
                     <div class="cs_section_heading_text">
                         <div class="cs_section_subtitle anim_div_ShowZoom">
-                            Our Core Services
+                            Our Services
                         </div>
                         <h2 class="cs_section_title anim_heading_title">
                             Comprehensive Digital Strategy Transformation
                         </h2>
-                        <p class="cs_section_description" style="margin-top: 20px; font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, 0.8);">
-                            We provide integrated marketing, content, technology, and performance systems designed to move businesses forward.
-                        </p>
                     </div>
                     <div class="cs_section_heading_right cs_btn_anim">
                         <a href="service.html" class="cs_btn cs_style_1 cs_color_1">
@@ -1593,80 +1461,7 @@
                     </div>
                 </div>
                 <div class="cs_height_50 cs_height_lg_10"></div>
-                
-                <!-- Mobile Services Carousel (visible only on mobile < 768px) -->
-                <div class="cs_services_mobile_carousel">
-                    <div class="swiper cs_services_carousel_swiper">
-                        <div class="swiper-wrapper">
-                            <!-- Slide 1: Search Marketing -->
-                            <div class="swiper-slide">
-                                <div class="cs_service_carousel_slide">
-                                    <div class="cs_service_carousel_image">
-                                        <img src="assets/img/service_search_marketing.jpg" alt="Search Marketing (SM)" loading="lazy" />
-                                    </div>
-                                    <div class="cs_service_carousel_content">
-                                        <h3 class="cs_service_carousel_title">Search Marketing (SM)</h3>
-                                        <p class="cs_service_carousel_desc">Enhance your digital visibility through advanced SEO, paid search campaigns, and generative search optimization.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 2: Social Media Marketing -->
-                            <div class="swiper-slide">
-                                <div class="cs_service_carousel_slide">
-                                    <div class="cs_service_carousel_image">
-                                        <img src="assets/img/service_social_media.jpg" alt="Social Media Marketing (SMM)" loading="lazy" />
-                                    </div>
-                                    <div class="cs_service_carousel_content">
-                                        <h3 class="cs_service_carousel_title">Social Media Marketing (SMM)</h3>
-                                        <p class="cs_service_carousel_desc">Grow your brand across all major platforms with high-impact content, smart management, and performance-driven social ads.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 3: Content & Creative -->
-                            <div class="swiper-slide">
-                                <div class="cs_service_carousel_slide">
-                                    <div class="cs_service_carousel_image">
-                                        <img src="assets/img/service_slider_1.png" alt="Content & Creative (CC)" loading="lazy" />
-                                    </div>
-                                    <div class="cs_service_carousel_content">
-                                        <h3 class="cs_service_carousel_title">Content & Creative (CC)</h3>
-                                        <p class="cs_service_carousel_desc">From strategic content creation to modern web development and high-quality creative production.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 4: Performance & CRO -->
-                            <div class="swiper-slide">
-                                <div class="cs_service_carousel_slide">
-                                    <div class="cs_service_carousel_image">
-                                        <img src="assets/img/service_performance_cro.jpg" alt="Performance & CRO (PCRO)" loading="lazy" />
-                                    </div>
-                                    <div class="cs_service_carousel_content">
-                                        <h3 class="cs_service_carousel_title">Performance & CRO (PCRO)</h3>
-                                        <p class="cs_service_carousel_desc">Optimize every stage of your digital funnel with performance marketing, conversion rate optimization, and automation systems.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Navigation Arrows -->
-                        <div class="cs_service_carousel_nav">
-                            <div class="cs_service_carousel_prev">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <div class="cs_service_carousel_next">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <!-- Pagination Dots -->
-                        <div class="cs_service_carousel_pagination"></div>
-                    </div>
-                </div>
-                
-                <!-- Desktop Service Cards (hidden on mobile) -->
-                <div class="cs_card_1_list cs_service_cards_desktop">
+                <div class="cs_card_1_list">
                     <div class="cs_card cs_style_1 cs_color_1 anim_div_ShowDowns">
                         <div class="cs_card_left">
                             <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.png">
@@ -1976,6 +1771,13 @@
                             </a>
                         </div>
                     </div>
+                </div>
+                <!-- Portfolio Navigation Buttons -->
+                <div class="cs_swiper_button_prev">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 0L11.7625 1.7625L4.7875 8.75H20V11.25H4.7875L11.775 18.225L10 20L0 10L10 0Z" fill="currentColor"/></svg>
+                </div>
+                <div class="cs_swiper_button_next">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 0L8.2375 1.7625L15.2125 8.75H0V11.25H15.2125L8.225 18.225L10 20L20 10L10 0Z" fill="currentColor"/></svg>
                 </div>
             </div>
         </div>

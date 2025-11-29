@@ -277,35 +277,14 @@
         autoplay: false,
         slidesPerView: "auto",
         centeredStartd: true,
+        navigation: {
+          nextEl: ".cs_horizontal_scrolls .cs_swiper_button_next",
+          prevEl: ".cs_horizontal_scrolls .cs_swiper_button_prev",
+        },
         pagination: {
           el: ".cs_pagination",
           clickable: true,
         },
-      });
-    }
-    // Mobile Services Carousel
-    if ($.exists(".cs_services_carousel_swiper")) {
-      var servicesCarousel = new Swiper(".cs_services_carousel_swiper", {
-        loop: true,
-        speed: 600,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
-        slidesPerView: 1,
-        spaceBetween: 0,
-        pagination: {
-          el: ".cs_service_carousel_pagination",
-          clickable: true,
-          type: "bullets",
-        },
-        navigation: {
-          nextEl: ".cs_service_carousel_next",
-          prevEl: ".cs_service_carousel_prev",
-        },
-        effect: "slide",
-        grabCursor: true,
-        touchEventsTarget: "container",
       });
     }
   }
