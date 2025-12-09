@@ -184,12 +184,38 @@
   /*--------------------------------------------------------------
        4. Dynamic Background
 -------------------------------------------------------------*/
+  // Image cache to prevent duplicate loading
+  var imageCache = {};
+  
   function dynamicBackground() {
     $("[data-src]").each(function () {
-      var src = $(this).attr("data-src");
-      $(this).css({
-        "background-image": "url(" + src + ")",
-      });
+      var $element = $(this);
+      var src = $element.attr("data-src");
+      
+      // Skip if already processed
+      if ($element.data('bg-loaded')) {
+        return;
+      }
+      
+      // Use cached image if available
+      if (imageCache[src]) {
+        $element.css({
+          "background-image": "url(" + src + ")",
+        });
+        $element.data('bg-loaded', true);
+        return;
+      }
+      
+      // Preload image and cache it
+      var img = new Image();
+      img.onload = function() {
+        imageCache[src] = true;
+        $element.css({
+          "background-image": "url(" + src + ")",
+        });
+        $element.data('bg-loaded', true);
+      };
+      img.src = src;
     });
   }
 

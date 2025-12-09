@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="StepUp" />
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo%20stepup%20w.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/logo%20stepup%20w.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/logo%20stepup%20w.png" />
-    <link rel="shortcut icon" href="assets/img/logo%20stepup%20w.png" />
+    <link rel="icon" type="image/webp" sizes="32x32" href="assets/img/logo%20stepup%20w.webp" />
+    <link rel="icon" type="image/webp" sizes="16x16" href="assets/img/logo%20stepup%20w.webp" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/logo%20stepup%20w.webp" />
+    <link rel="shortcut icon" href="assets/img/logo%20stepup%20w.webp" />
     <!-- Site Title -->
     <title>StepUp | Growth Agency</title>
         <!-- SEO Meta Tags -->
@@ -23,14 +23,14 @@
         <meta property="og:url" content="https://stepuphub.cloud/" />
         <meta property="og:title" content="StepUp | Growth Agency" />
         <meta property="og:description" content="StepUp is a UAE-based growth agency specializing in digital marketing, creative design, content production, and exhibition execution across the Middle East." />
-        <meta property="og:image" content="https://stepuphub.cloud/assets/img/logo stepup w.png" />
+        <meta property="og:image" content="https://stepuphub.cloud/assets/img/logo stepup w.webp" />
         
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://stepuphub.cloud/" />
         <meta property="twitter:title" content="StepUp | Growth Agency" />
         <meta property="twitter:description" content="StepUp is a UAE-based growth agency specializing in digital marketing, creative design, content production, and exhibition execution across the Middle East." />
-        <meta property="twitter:image" content="https://stepuphub.cloud/assets/img/logo stepup w.png" />
+        <meta property="twitter:image" content="https://stepuphub.cloud/assets/img/logo stepup w.webp" />
         
         <!-- Resource Hints for Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,18 +47,37 @@
         <link rel="dns-prefetch" href="https://twitter.com" />
         <link rel="dns-prefetch" href="https://dribbble.com" />
         
+        <!-- Prefetch Critical JavaScript -->
+        <link rel="prefetch" href="assets/js/plugins/gsap.min.js" as="script" />
+        <link rel="prefetch" href="assets/js/main.js" as="script" />
+        
         <!-- Google Fonts - Optimized Async Loading -->
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;900&family=Kanit:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;900&family=Kanit:wght@400;500;600;700&display=swap" /></noscript>
         
-        <!-- Preload Critical Resources -->
-        <link rel="preload" href="assets/img/hero_img_1.png" as="image" />
-        <link rel="preload" href="assets/css/plugins/bootstrap.min.css" as="style" />
+        <!-- Async CSS Loader Script -->
+        <script>
+            /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+            (function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(href,media,rel){var link=w.document.createElement("link");var ref;if(rel){ref=rel}else{var refs=w.document.getElementsByTagName("link");ref=refs[refs.length-1];}var sheets=w.document.styleSheets;link.rel="stylesheet";link.href=href;link.media="only x";function onload(){if(link.media!=="only x"){return;}link.media=media||"all";}if("onload" in link){link.onload=onload;}else{link.onreadystatechange=function(){if(link.readyState==="loaded"||link.readyState==="complete"){link.onreadystatechange=null;onload();}};}ref.parentNode.insertBefore(link,ref.nextSibling);return link;};}})(this);
+        </script>
         
+        <!-- Preload Critical Resources -->
+        <link rel="preload" href="assets/img/hero_img_1.webp" as="image" fetchpriority="high" type="image/webp" />
+        <link rel="preload" href="assets/css/plugins/bootstrap.min.css" as="style" />
+        <link rel="preload" href="assets/css/style.css" as="style" />
+        <link rel="preload" href="assets/js/plugins/jquery-3.7.0.min.js" as="script" />
+        <link rel="preload" href="assets/img/logo stepup w.webp" as="image" fetchpriority="high" type="image/webp" />
+        
+        <!-- Critical CSS - Load Immediately -->
     <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    
+    <!-- Non-Critical CSS - Load Asynchronously -->
+    <link rel="preload" href="assets/css/plugins/lightgallery.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css" /></noscript>
+    
+    <link rel="preload" href="assets/css/plugins/swiper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/plugins/swiper.min.css" /></noscript>
     <style>
         /* Scroll-Based Navbar Styles - Only visible at top */
         .cs_site_header {
@@ -309,12 +328,19 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image: url('assets/img/hero_img_1.png');
+            background-image: url('assets/img/hero_img_1.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
             animation: pulseGlow 4s ease-in-out infinite;
+        }
+        
+        /* Fallback for browsers that don't support WebP */
+        @supports not (background-image: url('assets/img/hero_img_1.webp')) {
+            .cs_hero_bg_base {
+                background-image: url('assets/img/hero_img_1.png');
+            }
         }
         
         .cs_hero_gradient_overlay {
@@ -1358,10 +1384,28 @@
             <div class="cs_main_header_in">
                 <div class="cs_main_header_left">
                     <a class="cs_site_branding logo-dark" href="index.html">
-                        <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                        <picture>
+                            <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                            <picture>
+                <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                <picture>
+                            <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                        </picture>
+            </picture>
+                        </picture>
                     </a>
                     <a class="cs_site_branding logo-white" href="index.html">
-                        <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                        <picture>
+                            <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                            <picture>
+                <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                <picture>
+                            <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                        </picture>
+            </picture>
+                        </picture>
                     </a>
                 </div>
                 <div class="cs_main_header_right">
@@ -1393,7 +1437,13 @@
     <div class="cs_side_header_overlay"></div>
     <div class="cs_side_header_in">
         <a class="cs_site_branding" href="index.html">
-            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+            <picture>
+                <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                <picture>
+                            <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                        </picture>
+            </picture>
         </a>
         <div class="cs_nav_black_section cs_font_changes">
             <ul>
@@ -1413,7 +1463,13 @@
         <div class="cs_side_header_overlay"></div>
         <div class="cs_side_header_in">
             <a class="cs_site_branding" href="index.html">
-                <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                <picture>
+                <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                <picture>
+                            <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                            <img src="assets/img/logo stepup w.png" alt="StepUp Logo" style="height:64px" />
+                        </picture>
+            </picture>
             </a>
             <div class="row align-items-end">
                 <div class="col-7">
@@ -1575,7 +1631,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="cs_about cs_style_1">
-                        <div class="cs_about_bg cs_bg" data-src="assets/img/about_img.png"></div>
+                        <div class="cs_about_bg cs_bg" data-src="assets/img/about_img.webp"></div>
                         <div class="container">
                             <div class="cs_about_text">
                                 <div class="cs_section_heading cs_style_1">
@@ -1598,7 +1654,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="cs_about cs_style_1">
-                        <div class="cs_about_bg cs_bg" data-src="assets/img/about_img.png"></div>
+                        <div class="cs_about_bg cs_bg" data-src="assets/img/about_img.webp"></div>
                         <div class="container">
                             <div class="cs_about_text">
                                 <div class="cs_section_heading cs_style_1">
@@ -1622,7 +1678,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="cs_about cs_style_1">
-                        <div class="cs_about_bg cs_bg cs_swiper_parallax_bg" data-src="assets/img/about_img.png"></div>
+                        <div class="cs_about_bg cs_bg cs_swiper_parallax_bg" data-src="assets/img/about_img.webp"></div>
                         <div class="container">
                             <div class="cs_about_text">
                                 <div class="cs_section_heading cs_style_1">
@@ -1700,7 +1756,7 @@
                 <div class="cs_card_1_list">
                     <div class="cs_card cs_style_1 cs_color_1 anim_div_ShowDowns">
                         <div class="cs_card_left">
-                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.png">
+                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.webp">
                                 01
                             </div>
                         </div>
@@ -1746,7 +1802,7 @@
                     </div>
                     <div class="cs_card cs_style_1 cs_color_1 anim_div_ShowDowns">
                         <div class="cs_card_left">
-                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.png">
+                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.webp">
                                 02
                             </div>
                         </div>
@@ -1792,7 +1848,7 @@
                     </div>
                     <div class="cs_card cs_style_1 cs_color_1 anim_div_ShowDowns">
                         <div class="cs_card_left">
-                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.png">
+                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.webp">
                                 03
                             </div>
                         </div>
@@ -1838,7 +1894,7 @@
                     </div>
                     <div class="cs_card cs_style_1 cs_color_1 anim_div_ShowDowns">
                         <div class="cs_card_left">
-                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.png">
+                            <div class="cs_card_number cs_primary_font" data-src="assets/img/hero_img_1.webp">
                                 04
                             </div>
                         </div>
@@ -1911,7 +1967,10 @@
                         <div class="cs_horizontal_scroll">
                             <a href="portfolio-aske-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_1.png" alt="Thumb" loading="lazy" />
+                                    <picture>
+                            <source srcset="assets/img/portfolio_1.webp" type="image/webp">
+                            <img src="assets/img/portfolio_1.png" alt="Thumb" loading="lazy" />
+                        </picture>
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
@@ -1927,7 +1986,10 @@
                         <div class="cs_horizontal_scroll">
                             <a href="portfolio-analytics-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_4.png" alt="Thumb" loading="lazy" />
+                                    <picture>
+                            <source srcset="assets/img/portfolio_4.webp" type="image/webp">
+                            <img src="assets/img/portfolio_4.png" alt="Thumb" loading="lazy" />
+                        </picture>
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
@@ -1943,7 +2005,10 @@
                         <div class="cs_horizontal_scroll">
                             <a href="portfolio-delivery-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_3.png" alt="Thumb" loading="lazy" />
+                                    <picture>
+                            <source srcset="assets/img/portfolio_3.webp" type="image/webp">
+                            <img src="assets/img/portfolio_3.png" alt="Thumb" loading="lazy" />
+                        </picture>
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
@@ -1959,7 +2024,10 @@
                         <div class="cs_horizontal_scroll">
                             <a href="portfolio-branding-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_2.png" alt="Thumb" loading="lazy" />
+                                    <picture>
+                            <source srcset="assets/img/portfolio_2.webp" type="image/webp">
+                            <img src="assets/img/portfolio_2.png" alt="Thumb" loading="lazy" />
+                        </picture>
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
@@ -1975,7 +2043,10 @@
                         <div class="cs_horizontal_scroll">
                             <a href="portfolio-analytics-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_1.png" alt="Thumb" loading="lazy" />
+                                    <picture>
+                            <source srcset="assets/img/portfolio_1.webp" type="image/webp">
+                            <img src="assets/img/portfolio_1.png" alt="Thumb" loading="lazy" />
+                        </picture>
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
@@ -1993,7 +2064,10 @@
                         <div class="cs_horizontal_scroll">
                             <a href="portfolio-delivery-dark.html" class="cs_portfolio cs_style_1">
                                 <div class="cs_portfolio_img">
-                                    <img src="assets/img/portfolio_2.png" alt="Thumb" loading="lazy" />
+                                    <picture>
+                            <source srcset="assets/img/portfolio_2.webp" type="image/webp">
+                            <img src="assets/img/portfolio_2.png" alt="Thumb" loading="lazy" />
+                        </picture>
                                 </div>
                                 <div class="cs_portfolio_overlay"></div>
                                 <div class="cs_portfolio_info">
@@ -2039,7 +2113,10 @@
                 <div class="cs_team_section anim_div_ShowDowns">
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg1.png" loading="lazy" alt="Mohamed Magdy" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg1.webp" type="image/webp">
+                            <img src="assets/img/teamsimg1.png" alt="Mohamed Magdy" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2051,7 +2128,10 @@
                     </div>
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg2.png" loading="lazy" alt="Ali Mohamed" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg2.webp" type="image/webp">
+                            <img src="assets/img/teamsimg2.png" alt="Ali Mohamed" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2063,7 +2143,10 @@
                     </div>
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg3.png" loading="lazy" alt="Ismail Yasser" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg3.webp" type="image/webp">
+                            <img src="assets/img/teamsimg3.png" alt="Ismail Yasser" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2075,7 +2158,10 @@
                     </div>
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg4.png" loading="lazy" alt="Ahmed Ibrahim" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg4.webp" type="image/webp">
+                            <img src="assets/img/teamsimg4.png" alt="Ahmed Ibrahim" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2090,7 +2176,10 @@
                 <div class="cs_team_section anim_div_ShowDowns">
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg5.png" loading="lazy" alt="Mayson Ahmed" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg5.webp" type="image/webp">
+                            <img src="assets/img/teamsimg5.png" alt="Mayson Ahmed" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2102,7 +2191,10 @@
                     </div>
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg6.png" loading="lazy" alt="teamsimg6" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg6.webp" type="image/webp">
+                            <img src="assets/img/teamsimg6.png" alt="teamsimg6" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2114,7 +2206,10 @@
                     </div>
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg7.png" loading="lazy" alt="teamsimg7" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg7.webp" type="image/webp">
+                            <img src="assets/img/teamsimg7.png" alt="teamsimg7" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2126,7 +2221,10 @@
                     </div>
                     <div class="cs_team_img">
                         <a href="team-dark.html">
-                            <img src="assets/img/teamsimg8.png" loading="lazy" alt="teamsimg8" />
+                            <picture>
+                            <source srcset="assets/img/teamsimg8.webp" type="image/webp">
+                            <img src="assets/img/teamsimg8.png" alt="teamsimg8" loading="lazy" />
+                        </picture>
                             <div class="cs_portfolio_overlay"></div>
                         </a>
                         <div class="cs_team_text">
@@ -2169,7 +2267,10 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4">
                         <div>
-                            <img src="assets/img/testimonial_thumb_1.jpg" alt="" class="w-100" loading="lazy" />
+                            <picture>
+                            <source srcset="assets/img/testimonial_thumb_1.webp" type="image/webp">
+                            <img src="assets/img/testimonial_thumb_1.jpg" loading="lazy" class="w-100" />
+                        </picture>
                         </div>
                     </div>
                     <div class="col-lg-7 offset-lg-1">
@@ -2197,8 +2298,10 @@
                                             </blockquote>
                                             <div class="cs_testimonial_meta">
                                                 <div class="cs_testimonial_avatar">
-                                                    <img src="assets/img/testimonial_uae_retailer.jpg" loading="lazy"
-                                                        alt="Portrait of UAE Retailer client" />
+                                                    <picture>
+                            <source srcset="assets/img/testimonial_uae_retailer.webp" type="image/webp">
+                            <img src="assets/img/testimonial_uae_retailer.jpg" alt="Portrait of UAE Retailer client" loading="lazy" />
+                        </picture>
                                                 </div>
                                                 <div class="cs_testimonial_meta_right">
                                                     <h3 class="cs_testimonial_avatar_name">UAE Retailer</h3>
@@ -2225,8 +2328,10 @@
                                             </blockquote>
                                             <div class="cs_testimonial_meta">
                                                 <div class="cs_testimonial_avatar">
-                                                    <img src="assets/img/testimonial_ksa_startup.jpg" loading="lazy"
-                                                        alt="Portrait of KSA Tech Startup founder" />
+                                                    <picture>
+                            <source srcset="assets/img/testimonial_ksa_startup.webp" type="image/webp">
+                            <img src="assets/img/testimonial_ksa_startup.jpg" alt="Portrait of KSA Tech Startup founder" loading="lazy" />
+                        </picture>
                                                 </div>
                                                 <div class="cs_testimonial_meta_right">
                                                     <h3 class="cs_testimonial_avatar_name">KSA Tech Startup</h3>
@@ -2306,7 +2411,7 @@
             <div class="cs_parallax">
                 <a href="assets/img/video_block.mp4"
                     class="cs_video_block cs_style1 cs_video_open cs_bg cs_parallax_bg"
-                    data-src="assets/img/video_block_thumb.jpg"
+                    data-src="assets/img/video_block_thumb.webp"
                     style="background-image:url('assets/img/video_block_thumb.jpg');background-size:cover;background-position:center;">
                     <span class="cs_player_btn cs_accent_color">
                         <span></span>
@@ -2347,7 +2452,10 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/blog_business_agency.jpg" loading="lazy" alt="Strategy workshop with marketing team" />
+                                    <picture>
+                            <source srcset="assets/img/blog_business_agency.webp" type="image/webp">
+                            <img src="assets/img/blog_business_agency.jpg" alt="Strategy workshop with marketing team" loading="lazy" />
+                        </picture>
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
@@ -2362,7 +2470,10 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details-creative-agency.html" class="cs_post_thumb">
-                                    <img src="assets/img/blog_creative_agency.jpg" loading="lazy" alt="Creative team collaborating on ideas" />
+                                    <picture>
+                            <source srcset="assets/img/blog_creative_agency.webp" type="image/webp">
+                            <img src="assets/img/blog_creative_agency.jpg" alt="Creative team collaborating on ideas" loading="lazy" />
+                        </picture>
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
@@ -2377,7 +2488,10 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details-marketing-budget.html" class="cs_post_thumb">
-                                    <img src="assets/img/blog_marketing_budget.jpg" loading="lazy" alt="Marketing budget analytics dashboard" />
+                                    <picture>
+                            <source srcset="assets/img/blog_marketing_budget.webp" type="image/webp">
+                            <img src="assets/img/blog_marketing_budget.jpg" alt="Marketing budget analytics dashboard" loading="lazy" />
+                        </picture>
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
@@ -2392,7 +2506,10 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details.html" class="cs_post_thumb">
-                                    <img src="assets/img/blog_business_agency.jpg" loading="lazy" alt="Strategy workshop with marketing team" />
+                                    <picture>
+                            <source srcset="assets/img/blog_business_agency.webp" type="image/webp">
+                            <img src="assets/img/blog_business_agency.jpg" alt="Strategy workshop with marketing team" loading="lazy" />
+                        </picture>
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
@@ -2408,7 +2525,10 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details-creative-agency.html" class="cs_post_thumb">
-                                    <img src="assets/img/blog_creative_agency.jpg" loading="lazy" alt="Creative team collaborating on ideas" />
+                                    <picture>
+                            <source srcset="assets/img/blog_creative_agency.webp" type="image/webp">
+                            <img src="assets/img/blog_creative_agency.jpg" alt="Creative team collaborating on ideas" loading="lazy" />
+                        </picture>
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
@@ -2423,7 +2543,10 @@
                         <div class="swiper-slide">
                             <div class="cs_post cs_style_1">
                                 <a href="blog-details-marketing-budget.html" class="cs_post_thumb">
-                                    <img src="assets/img/blog_marketing_budget.jpg" loading="lazy" alt="Marketing budget analytics dashboard" />
+                                    <picture>
+                            <source srcset="assets/img/blog_marketing_budget.webp" type="image/webp">
+                            <img src="assets/img/blog_marketing_budget.jpg" alt="Marketing budget analytics dashboard" loading="lazy" />
+                        </picture>
                                 </a>
                                 <div class="cs_post_info">
                                     <h2 class="cs_post_title">
@@ -2636,7 +2759,13 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="cs_footer_info">
+                            <picture>
+                                <source srcset="assets/img/logo stepup w.webp" type="image/webp">
+                                <picture>
+                            <source srcset="assets/img/logo stepup w.webp" type="image/webp">
                             <img src="assets/img/logo stepup w.png" alt="StepUp Logo" />
+                        </picture>
+                            </picture>
                             <p>
                                 StepUp is a UAE-based growth agency specializing in digital marketing, creative design,
                                 content production, and exhibition execution across the Middle East.
@@ -2738,15 +2867,22 @@
     <!-- End Video Popup -->
     <!-- Script -->
     <script src="assets/js/plugins/jquery-3.7.0.min.js"></script>
+    <!-- GSAP Core - Load First -->
     <script src="assets/js/plugins/gsap.min.js" defer></script>
+    <!-- GSAP Plugins - Load After Core -->
     <script src="assets/js/plugins/ScrollToPlugin.min.js" defer></script>
     <script src="assets/js/plugins/ScrollTrigger.min.js" defer></script>
     <script src="assets/js/plugins/ScrollSmoother.min.js" defer></script>
     <script src="assets/js/plugins/SplitText.min.js" defer></script>
+    <!-- UI Libraries - Can Load in Parallel -->
     <script src="assets/js/plugins/isotope.pkg.min.js" defer></script>
     <script src="assets/js/plugins/swiper.min.js" defer></script>
     <script src="assets/js/plugins/lightgallery.min.js" defer></script>
+    <!-- Main Script - Load Last -->
     <script src="assets/js/main.js" defer></script>
+    
+    <!-- Performance: Preconnect to CDNs for faster script loading -->
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
     
     <!-- Scroll-Based Navbar Script - Only visible at top -->
     <script>
@@ -2786,26 +2922,32 @@
         })();
     </script>
     
-    <!-- ElevenLabs ConvAI Widget - Lazy Loaded -->
+    <!-- ElevenLabs ConvAI Widget - Load Immediately -->
     <div id="elevenlabs-widget-container"></div>
     <script>
-        // Lazy load ElevenLabs widget after page is fully loaded and painted
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                // Create the widget element
-                var widgetContainer = document.getElementById('elevenlabs-widget-container');
-                if (widgetContainer) {
-                    widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
-                    
-                    // Dynamically load the script
-                    var script = document.createElement('script');
-                    script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
-                    script.type = 'text/javascript';
-                    script.async = true;
-                    document.body.appendChild(script);
-                }
-            }, 4000); // Load after 4 seconds to ensure main content is painted
-        });
+        // Load widget immediately when DOM is ready
+        function loadElevenLabsWidget() {
+            var widgetContainer = document.getElementById('elevenlabs-widget-container');
+            if (!widgetContainer) return;
+            
+            widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
+            
+            // Dynamically load the script
+            var script = document.createElement('script');
+            script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+            script.type = 'text/javascript';
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            document.body.appendChild(script);
+        }
+        
+        // Load immediately when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadElevenLabsWidget);
+        } else {
+            // DOM is already ready, load immediately
+            loadElevenLabsWidget();
+        }
     </script>
 </body>
 
