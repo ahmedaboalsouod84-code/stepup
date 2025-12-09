@@ -10,7 +10,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/logo%20stepup%20w.png" />
     <link rel="shortcut icon" href="assets/img/logo%20stepup%20w.png" />
     <title>StepUp | Ali Mohamed</title>
-    <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css" />
+            <!-- Critical CSS - Inline for Above-the-Fold -->
+        <style>
+            /* Critical Above-the-Fold CSS - Prevents Render Blocking */
+            .cs_preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center}.cs_preloader_in{text-align:center}.cs_site_header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:transform .3s}.cs_hero_section{position:relative;width:100%;min-height:100vh;display:flex;align-items:center}.cs_hero_bg_base{position:absolute;width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat}.cs_hero_text{position:relative;z-index:10;color:#fff}.body{font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0}
+        </style>
+        
+        <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css" />
     <link rel="stylesheet" href="assets/css/plugins/swiper.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -288,26 +294,99 @@
     <script src="assets/js/plugins/gsap.min.js"></script>
     <script src="assets/js/main.js"></script>
     
-        <!-- ElevenLabs ConvAI Widget - Lazy Loaded -->
+            <!-- ElevenLabs ConvAI Widget - Optimized Smart Loading -->
     <div id="elevenlabs-widget-container"></div>
     <script>
-        // Lazy load ElevenLabs widget after page is fully loaded and painted
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                // Create the widget element
-                var widgetContainer = document.getElementById('elevenlabs-widget-container');
-                if (widgetContainer) {
+        (function() {
+            'use strict';
+            
+            // Smart widget loading: Load after first paint, but quickly
+            var widgetLoaded = false;
+            var loadAttempts = 0;
+            var maxAttempts = 3;
+            
+            function loadElevenLabsWidget() {
+                if (widgetLoaded) return;
+                loadAttempts++;
+                
+                try {
+                    var widgetContainer = document.getElementById('elevenlabs-widget-container');
+                    if (!widgetContainer) {
+                        if (loadAttempts < maxAttempts) {
+                            setTimeout(loadElevenLabsWidget, 500);
+                        }
+                        return;
+                    }
+                    
+                    widgetLoaded = true;
+                    
+                    // Inject widget element
                     widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
                     
-                    // Dynamically load the script
+                    // Dynamically load script with error handling
                     var script = document.createElement('script');
                     script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
                     script.type = 'text/javascript';
                     script.async = true;
+                    script.crossOrigin = 'anonymous';
+                    
+                    script.onerror = function() {
+                        // Retry once if script fails to load
+                        if (loadAttempts < maxAttempts) {
+                            widgetLoaded = false;
+                            setTimeout(loadElevenLabsWidget, 1000);
+                        }
+                    };
+                    
                     document.body.appendChild(script);
+                } catch (error) {
+                    // Silently fail - widget is non-critical
+                    if (loadAttempts < maxAttempts) {
+                        widgetLoaded = false;
+                        setTimeout(loadElevenLabsWidget, 1000);
+                    }
                 }
-            }, 4000); // Load after 4 seconds to ensure main content is painted
-        });
+            }
+            
+            // Strategy 1: Load after first paint (requestAnimationFrame)
+            if (window.requestAnimationFrame) {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        // After second paint, load widget
+                        setTimeout(loadElevenLabsWidget, 500);
+                    });
+                });
+            }
+            
+            // Strategy 2: Load on DOM ready (fallback)
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(loadElevenLabsWidget, 800);
+                });
+            } else {
+                setTimeout(loadElevenLabsWidget, 800);
+            }
+            
+            // Strategy 3: Load on user interaction (scroll/click) - fastest UX
+            var userInteracted = false;
+            function onUserInteraction() {
+                if (!userInteracted && !widgetLoaded) {
+                    userInteracted = true;
+                    loadElevenLabsWidget();
+                }
+            }
+            
+            window.addEventListener('scroll', onUserInteraction, { once: true, passive: true });
+            window.addEventListener('click', onUserInteraction, { once: true, passive: true });
+            window.addEventListener('touchstart', onUserInteraction, { once: true, passive: true });
+            
+            // Strategy 4: Failsafe - load after 3 seconds max
+            setTimeout(function() {
+                if (!widgetLoaded) {
+                    loadElevenLabsWidget();
+                }
+            }, 3000);
+        })();
     </script>
 </body>
 </html>

@@ -53,12 +53,86 @@
   // Mobile detection - global variable
   const isMobile = window.innerWidth < 992;
 
+  // ============================================
+  // BULLETPROOF PRELOADER REMOVAL
+  // Multiple failsafes to prevent stuck loader
+  // ============================================
+  let preloaderHidden = false;
+  
+  function hidePreloader() {
+    if (preloaderHidden) return;
+    preloaderHidden = true;
+    
+    try {
+      // Vanilla JS fallback (works even if jQuery fails)
+      const preloader = document.querySelector('.cs_preloader');
+      const preloaderIn = document.querySelector('.cs_preloader_in');
+      
+      if (preloader) {
+        // Use jQuery if available, otherwise vanilla JS
+        if (typeof $ !== 'undefined' && $.fn.fadeOut) {
+          try {
+            $(preloaderIn).stop(true, true).fadeOut(200);
+            $(preloader).stop(true, true).delay(150).fadeOut(400, function() {
+              preloader.style.display = 'none';
+              preloader.remove();
+            });
+          } catch (e) {
+            // jQuery failed, use vanilla JS
+            if (preloaderIn) preloaderIn.style.opacity = '0';
+            setTimeout(function() {
+              preloader.style.opacity = '0';
+              preloader.style.transition = 'opacity 0.4s';
+              setTimeout(function() {
+                preloader.style.display = 'none';
+                preloader.remove();
+              }, 400);
+            }, 150);
+          }
+        } else {
+          // Pure vanilla JS fallback
+          if (preloaderIn) {
+            preloaderIn.style.opacity = '0';
+            preloaderIn.style.transition = 'opacity 0.2s';
+          }
+          setTimeout(function() {
+            preloader.style.opacity = '0';
+            preloader.style.transition = 'opacity 0.4s';
+            setTimeout(function() {
+              preloader.style.display = 'none';
+              preloader.remove();
+            }, 400);
+          }, 150);
+        }
+      }
+    } catch (error) {
+      // Last resort: force hide
+      const preloader = document.querySelector('.cs_preloader');
+      if (preloader) {
+        preloader.style.display = 'none';
+        preloader.remove();
+      }
+    }
+  }
+
+  // Failsafe 1: DOMContentLoaded (faster, doesn't wait for images)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide after a short delay to allow initial render
+      setTimeout(hidePreloader, 300);
+    });
+  } else {
+    // DOM already loaded
+    setTimeout(hidePreloader, 300);
+  }
+
+  // Failsafe 2: window.load (when all resources loaded)
   $(window).on("load", function () {
     // Use requestAnimationFrame to prevent blocking main thread
     requestAnimationFrame(function() {
+      hidePreloader();
       $(window).trigger("scroll");
       $(window).trigger("resize");
-      preloader();
       
       // Fix scroll locking issue
       if (typeof ScrollTrigger !== "undefined") {
@@ -66,6 +140,16 @@
       }
     });
   });
+
+  // Failsafe 3: Timeout (2000ms max wait - prevents infinite loading)
+  setTimeout(function() {
+    hidePreloader();
+  }, 2000);
+
+  // Legacy preloader function (kept for compatibility)
+  function preloader() {
+    hidePreloader();
+  }
 
   $(function () {
     // Wrap initializations in requestAnimationFrame for better performance

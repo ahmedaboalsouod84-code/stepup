@@ -36,9 +36,11 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         
-        <!-- Preconnect for ElevenLabs Widget -->
-        <link rel="preconnect" href="https://elevenlabs.io" />
-        <link rel="preconnect" href="https://unpkg.com" />
+        <!-- Preconnect for ElevenLabs Widget (Early Connection) -->
+        <link rel="preconnect" href="https://elevenlabs.io" crossorigin />
+        <link rel="preconnect" href="https://unpkg.com" crossorigin />
+        <link rel="dns-prefetch" href="https://elevenlabs.io" />
+        <link rel="dns-prefetch" href="https://unpkg.com" />
         
         <!-- DNS Prefetch for External Domains -->
         <link rel="dns-prefetch" href="https://www.facebook.com" />
@@ -68,16 +70,22 @@
         <link rel="preload" href="assets/js/plugins/jquery-3.7.0.min.js" as="script" />
         <link rel="preload" href="assets/img/logo stepup w.webp" as="image" fetchpriority="high" type="image/webp" />
         
+        <!-- Critical CSS - Inline for Above-the-Fold -->
+        <style>
+            /* Critical Above-the-Fold CSS - Prevents Render Blocking */
+            .cs_preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center}.cs_preloader_in{text-align:center}.cs_site_header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:transform .3s}.cs_hero_section{position:relative;width:100%;min-height:100vh;display:flex;align-items:center}.cs_hero_bg_base{position:absolute;width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat}.cs_hero_text{position:relative;z-index:10;color:#fff}.body{font-family:system-ui,-apple-system,sans-serif;margin:0;padding:0}
+        </style>
+        
         <!-- Critical CSS - Load Immediately -->
-    <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    
-    <!-- Non-Critical CSS - Load Asynchronously -->
-    <link rel="preload" href="assets/css/plugins/lightgallery.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css" /></noscript>
-    
-    <link rel="preload" href="assets/css/plugins/swiper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/plugins/swiper.min.css" /></noscript>
+        <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        
+        <!-- Non-Critical CSS - Load Asynchronously (Below-the-Fold) -->
+        <link rel="preload" href="assets/css/plugins/lightgallery.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css" /></noscript>
+        
+        <link rel="preload" href="assets/css/plugins/swiper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="assets/css/plugins/swiper.min.css" /></noscript>
     <style>
         /* Scroll-Based Navbar Styles - Only visible at top */
         .cs_site_header {
@@ -2922,32 +2930,99 @@
         })();
     </script>
     
-    <!-- ElevenLabs ConvAI Widget - Load Immediately -->
+        <!-- ElevenLabs ConvAI Widget - Optimized Smart Loading -->
     <div id="elevenlabs-widget-container"></div>
     <script>
-        // Load widget immediately when DOM is ready
-        function loadElevenLabsWidget() {
-            var widgetContainer = document.getElementById('elevenlabs-widget-container');
-            if (!widgetContainer) return;
+        (function() {
+            'use strict';
             
-            widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
+            // Smart widget loading: Load after first paint, but quickly
+            var widgetLoaded = false;
+            var loadAttempts = 0;
+            var maxAttempts = 3;
             
-            // Dynamically load the script
-            var script = document.createElement('script');
-            script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
-            script.type = 'text/javascript';
-            script.async = true;
-            script.crossOrigin = 'anonymous';
-            document.body.appendChild(script);
-        }
-        
-        // Load immediately when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadElevenLabsWidget);
-        } else {
-            // DOM is already ready, load immediately
-            loadElevenLabsWidget();
-        }
+            function loadElevenLabsWidget() {
+                if (widgetLoaded) return;
+                loadAttempts++;
+                
+                try {
+                    var widgetContainer = document.getElementById('elevenlabs-widget-container');
+                    if (!widgetContainer) {
+                        if (loadAttempts < maxAttempts) {
+                            setTimeout(loadElevenLabsWidget, 500);
+                        }
+                        return;
+                    }
+                    
+                    widgetLoaded = true;
+                    
+                    // Inject widget element
+                    widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
+                    
+                    // Dynamically load script with error handling
+                    var script = document.createElement('script');
+                    script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+                    script.type = 'text/javascript';
+                    script.async = true;
+                    script.crossOrigin = 'anonymous';
+                    
+                    script.onerror = function() {
+                        // Retry once if script fails to load
+                        if (loadAttempts < maxAttempts) {
+                            widgetLoaded = false;
+                            setTimeout(loadElevenLabsWidget, 1000);
+                        }
+                    };
+                    
+                    document.body.appendChild(script);
+                } catch (error) {
+                    // Silently fail - widget is non-critical
+                    if (loadAttempts < maxAttempts) {
+                        widgetLoaded = false;
+                        setTimeout(loadElevenLabsWidget, 1000);
+                    }
+                }
+            }
+            
+            // Strategy 1: Load after first paint (requestAnimationFrame)
+            if (window.requestAnimationFrame) {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        // After second paint, load widget
+                        setTimeout(loadElevenLabsWidget, 500);
+                    });
+                });
+            }
+            
+            // Strategy 2: Load on DOM ready (fallback)
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(loadElevenLabsWidget, 800);
+                });
+            } else {
+                setTimeout(loadElevenLabsWidget, 800);
+            }
+            
+            // Strategy 3: Load on user interaction (scroll/click) - fastest UX
+            var userInteracted = false;
+            function onUserInteraction() {
+                if (!userInteracted && !widgetLoaded) {
+                    userInteracted = true;
+                    loadElevenLabsWidget();
+                }
+            }
+            
+            window.addEventListener('scroll', onUserInteraction, { once: true, passive: true });
+            window.addEventListener('click', onUserInteraction, { once: true, passive: true });
+            window.addEventListener('touchstart', onUserInteraction, { once: true, passive: true });
+            
+            // Strategy 4: Failsafe - load after 3 seconds max
+            setTimeout(function() {
+                if (!widgetLoaded) {
+                    loadElevenLabsWidget();
+                }
+            }, 3000);
+        })();
     </script>
 </body>
 
