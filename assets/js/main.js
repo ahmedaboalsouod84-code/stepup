@@ -69,40 +69,20 @@
       const preloaderIn = document.querySelector('.cs_preloader_in');
       
       if (preloader) {
-        // Use jQuery if available, otherwise vanilla JS
-        if (typeof $ !== 'undefined' && $.fn.fadeOut) {
-          try {
-            $(preloaderIn).stop(true, true).fadeOut(200);
-            $(preloader).stop(true, true).delay(150).fadeOut(400, function() {
-              preloader.style.display = 'none';
-              preloader.remove();
-            });
-          } catch (e) {
-            // jQuery failed, use vanilla JS
-            if (preloaderIn) preloaderIn.style.opacity = '0';
-            setTimeout(function() {
-              preloader.style.opacity = '0';
-              preloader.style.transition = 'opacity 0.4s';
-              setTimeout(function() {
-                preloader.style.display = 'none';
-                preloader.remove();
-              }, 400);
-            }, 150);
-          }
-        } else {
-          // Pure vanilla JS fallback
-          if (preloaderIn) {
-            preloaderIn.style.opacity = '0';
-            preloaderIn.style.transition = 'opacity 0.2s';
-          }
-          setTimeout(function() {
-            preloader.style.opacity = '0';
-            preloader.style.transition = 'opacity 0.4s';
-            setTimeout(function() {
-              preloader.style.display = 'none';
-              preloader.remove();
-            }, 400);
-          }, 150);
+        // Fast removal - minimal animation to avoid blocking
+        // Use immediate opacity change, then remove after brief delay
+        preloader.style.transition = 'opacity 0.2s';
+        preloader.style.opacity = '0';
+        
+        // Remove from DOM quickly (don't wait for animation)
+        setTimeout(function() {
+          preloader.style.display = 'none';
+          preloader.remove();
+        }, 200);
+        
+        // Also hide inner element immediately
+        if (preloaderIn) {
+          preloaderIn.style.opacity = '0';
         }
       }
     } catch (error) {
@@ -116,35 +96,46 @@
   }
 
   // Failsafe 1: DOMContentLoaded (faster, doesn't wait for images)
+  // Hide immediately on DOM ready - don't wait for animations
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
-      // Hide after a short delay to allow initial render
-      setTimeout(hidePreloader, 300);
+      // Hide immediately - don't wait for heavy animations
+      hidePreloader();
     });
   } else {
-    // DOM already loaded
-    setTimeout(hidePreloader, 300);
+    // DOM already loaded - hide immediately
+    hidePreloader();
   }
 
   // Failsafe 2: window.load (when all resources loaded)
+  // Note: Don't wait for this - DOMContentLoaded is faster
   $(window).on("load", function () {
-    // Use requestAnimationFrame to prevent blocking main thread
+    hidePreloader(); // Hide immediately, no animation delay
+    
+    // Trigger scroll/resize AFTER hiding preloader (non-blocking)
     requestAnimationFrame(function() {
-      hidePreloader();
       $(window).trigger("scroll");
       $(window).trigger("resize");
       
-      // Fix scroll locking issue
+      // Fix scroll locking issue (non-blocking)
       if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.refresh();
       }
     });
   });
 
-  // Failsafe 3: Timeout (2000ms max wait - prevents infinite loading)
+  // Failsafe 3: Hard timeout (4000ms max wait - prevents infinite loading)
+  // This ensures loader NEVER gets stuck, even if all other failsafes fail
   setTimeout(function() {
     hidePreloader();
-  }, 2000);
+    // Force immediate removal (no animation delay)
+    const preloader = document.querySelector('.cs_preloader');
+    if (preloader) {
+      preloader.style.display = 'none';
+      preloader.style.opacity = '0';
+      preloader.remove();
+    }
+  }, 4000);
 
   // Legacy preloader function (kept for compatibility)
   function preloader() {

@@ -469,80 +469,50 @@
     <script src="assets/js/plugins/gsap.min.js"></script>
     <script src="assets/js/main.js"></script>
     
-            <!-- ElevenLabs ConvAI Widget - Optimized Smart Loading -->
-    <div id="elevenlabs-widget-container"></div>
+                <!-- ElevenLabs ConvAI Widget - Ultra-Optimized Loading -->
+    <!-- Lightweight Skeleton: Shows immediately, loads widget intelligently -->
+    <div id="elevenlabs-widget-container">
+        <div id="elevenlabs-skeleton" style="position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:#04a8ce;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;z-index:9998;display:flex;align-items:center;justify-content:center;transition:transform 0.2s;" onclick="document.getElementById('elevenlabs-widget-container').querySelector('elevenlabs-convai')?.click()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+        </div>
+    </div>
     <script>
         (function() {
             'use strict';
             
-            // Smart widget loading: Load after first paint, but quickly
             var widgetLoaded = false;
-            var loadAttempts = 0;
-            var maxAttempts = 3;
+            var skeleton = document.getElementById('elevenlabs-skeleton');
             
             function loadElevenLabsWidget() {
                 if (widgetLoaded) return;
-                loadAttempts++;
+                widgetLoaded = true;
                 
                 try {
-                    var widgetContainer = document.getElementById('elevenlabs-widget-container');
-                    if (!widgetContainer) {
-                        if (loadAttempts < maxAttempts) {
-                            setTimeout(loadElevenLabsWidget, 500);
-                        }
-                        return;
-                    }
+                    var container = document.getElementById('elevenlabs-widget-container');
+                    if (!container) return;
                     
-                    widgetLoaded = true;
+                    // Hide skeleton when widget loads
+                    if (skeleton) {
+                        skeleton.style.display = 'none';
+                    }
                     
                     // Inject widget element
-                    widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
+                    container.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
                     
-                    // Dynamically load script with error handling
+                    // Load script asynchronously (non-blocking)
                     var script = document.createElement('script');
                     script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
-                    script.type = 'text/javascript';
                     script.async = true;
                     script.crossOrigin = 'anonymous';
-                    
-                    script.onerror = function() {
-                        // Retry once if script fails to load
-                        if (loadAttempts < maxAttempts) {
-                            widgetLoaded = false;
-                            setTimeout(loadElevenLabsWidget, 1000);
-                        }
-                    };
-                    
                     document.body.appendChild(script);
-                } catch (error) {
+                } catch (e) {
                     // Silently fail - widget is non-critical
-                    if (loadAttempts < maxAttempts) {
-                        widgetLoaded = false;
-                        setTimeout(loadElevenLabsWidget, 1000);
-                    }
                 }
             }
             
-            // Strategy 1: Load after first paint (requestAnimationFrame)
-            if (window.requestAnimationFrame) {
-                requestAnimationFrame(function() {
-                    requestAnimationFrame(function() {
-                        // After second paint, load widget
-                        setTimeout(loadElevenLabsWidget, 500);
-                    });
-                });
-            }
-            
-            // Strategy 2: Load on DOM ready (fallback)
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', function() {
-                    setTimeout(loadElevenLabsWidget, 800);
-                });
-            } else {
-                setTimeout(loadElevenLabsWidget, 800);
-            }
-            
-            // Strategy 3: Load on user interaction (scroll/click) - fastest UX
+            // PRIORITY 1: User interaction (pointerdown/scroll) - fastest UX
             var userInteracted = false;
             function onUserInteraction() {
                 if (!userInteracted && !widgetLoaded) {
@@ -551,16 +521,47 @@
                 }
             }
             
-            window.addEventListener('scroll', onUserInteraction, { once: true, passive: true });
+            // Listen for earliest user interaction
+            document.addEventListener('pointerdown', onUserInteraction, { once: true, passive: true });
+            document.addEventListener('scroll', onUserInteraction, { once: true, passive: true });
             window.addEventListener('click', onUserInteraction, { once: true, passive: true });
             window.addEventListener('touchstart', onUserInteraction, { once: true, passive: true });
             
-            // Strategy 4: Failsafe - load after 3 seconds max
+            // PRIORITY 2: requestIdleCallback (loads during browser idle time)
+            if (window.requestIdleCallback) {
+                window.requestIdleCallback(function() {
+                    if (!widgetLoaded) {
+                        loadElevenLabsWidget();
+                    }
+                }, { timeout: 2000 });
+            }
+            
+            // PRIORITY 3: After first paint (requestAnimationFrame)
+            if (window.requestAnimationFrame && !userInteracted) {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        if (!widgetLoaded) {
+                            setTimeout(loadElevenLabsWidget, 300);
+                        }
+                    });
+                });
+            }
+            
+            // PRIORITY 4: DOM ready fallback
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    if (!widgetLoaded && !userInteracted) {
+                        setTimeout(loadElevenLabsWidget, 500);
+                    }
+                });
+            }
+            
+            // Failsafe: Load after 2 seconds max (ensures widget appears)
             setTimeout(function() {
                 if (!widgetLoaded) {
                     loadElevenLabsWidget();
                 }
-            }, 3000);
+            }, 2000);
         })();
     </script>
 </body>
