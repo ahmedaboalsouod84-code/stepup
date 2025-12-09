@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css" />
     <link rel="stylesheet" href="assets/css/plugins/swiper.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+        <!-- Preconnect for ElevenLabs Widget -->
+        <link rel="preconnect" href="https://elevenlabs.io" />
+        <link rel="preconnect" href="https://unpkg.com" />
+        
 </head>
 
 <body class="dark">
@@ -851,6 +855,28 @@
     <script src="assets/js/plugins/ScrollSmoother.min.js"></script>
     <script src="assets/js/plugins/gsap.min.js"></script>
     <script src="assets/js/main.js"></script>
+    
+        <!-- ElevenLabs ConvAI Widget - Lazy Loaded -->
+    <div id="elevenlabs-widget-container"></div>
+    <script>
+        // Lazy load ElevenLabs widget after page is fully loaded and painted
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Create the widget element
+                var widgetContainer = document.getElementById('elevenlabs-widget-container');
+                if (widgetContainer) {
+                    widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
+                    
+                    // Dynamically load the script
+                    var script = document.createElement('script');
+                    script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+                    script.type = 'text/javascript';
+                    script.async = true;
+                    document.body.appendChild(script);
+                }
+            }, 4000); // Load after 4 seconds to ensure main content is painted
+        });
+    </script>
 </body>
 
 </html>

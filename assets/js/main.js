@@ -54,28 +54,34 @@
   const isMobile = window.innerWidth < 992;
 
   $(window).on("load", function () {
-    $(window).trigger("scroll");
-    $(window).trigger("resize");
-    preloader();
-    
-    // Fix scroll locking issue
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh();
-    }
+    // Use requestAnimationFrame to prevent blocking main thread
+    requestAnimationFrame(function() {
+      $(window).trigger("scroll");
+      $(window).trigger("resize");
+      preloader();
+      
+      // Fix scroll locking issue
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+      }
+    });
   });
 
   $(function () {
-    $(window).trigger("resize");
-    mainNav();
-    stickyHeader();
-    dynamicBackground();
-    swiperInit();
-    isotopInit();
-    modalVideo();
-    hoverTab();
-    lightGalleryInit();
-    scrollUp();
-    fullScreenSwiperSlider();
+    // Wrap initializations in requestAnimationFrame for better performance
+    requestAnimationFrame(function() {
+      $(window).trigger("resize");
+      mainNav();
+      stickyHeader();
+      dynamicBackground();
+      swiperInit();
+      isotopInit();
+      modalVideo();
+      hoverTab();
+      lightGalleryInit();
+      scrollUp();
+      fullScreenSwiperSlider();
+    });
   });
 
   $(window).on("scroll", function () {
@@ -541,43 +547,54 @@
   /*--------------------------------------------------------------
         14. Register GSAP
  --------------------------------------------------------------*/
-  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
-
-  /*--------------------------------------------------------------
-         15. Config GSAP
- --------------------------------------------------------------*/
-  gsap.config({
-    nullTargetWarn: false,
+  // Wrap GSAP registration in requestAnimationFrame for better performance
+  requestAnimationFrame(function() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
+      
+      /*--------------------------------------------------------------
+             15. Config GSAP
+      --------------------------------------------------------------*/
+      gsap.config({
+        nullTargetWarn: false,
+      });
+    }
   });
 
   // ScrollSmoother and heavy animations - ONLY on desktop
   let smoother = null;
   
-  if (!isMobile) {
-    // Initialize ScrollSmoother only on desktop
-    const widthall = window.innerWidth;
-    smoother = ScrollSmoother.create({
-      content: "#scrollsmoother-container",
-      smooth: 1.2,
-      normalizeScroll: false,
-      ignoreMobileResize: true,
-      effects: true,
-      smoothTouch: false,
-    });
-  } else {
-    // Mobile: Enforce native scrolling
-    $('html, body').css({ 
-      'overflow': 'auto', 
-      'height': 'auto' 
-    });
-    
-    $('#scrollsmoother-container').css({ 
-      'position': 'relative', 
-      'overflow': 'visible', 
-      'height': 'auto',
-      'transform': 'none'
-    });
-  }
+  // Initialize ScrollSmoother after DOM is ready and in next frame
+  requestAnimationFrame(function() {
+    if (!isMobile && typeof ScrollSmoother !== 'undefined') {
+      // Initialize ScrollSmoother only on desktop
+      try {
+        smoother = ScrollSmoother.create({
+          content: "#scrollsmoother-container",
+          smooth: 1.2,
+          normalizeScroll: false,
+          ignoreMobileResize: true,
+          effects: true,
+          smoothTouch: false,
+        });
+      } catch (e) {
+        console.warn('ScrollSmoother initialization failed:', e);
+      }
+    } else {
+      // Mobile: Enforce native scrolling
+      $('html, body').css({ 
+        'overflow': 'auto', 
+        'height': 'auto' 
+      });
+      
+      $('#scrollsmoother-container').css({ 
+        'position': 'relative', 
+        'overflow': 'visible', 
+        'height': 'auto',
+        'transform': 'none'
+      });
+    }
+  });
 
   /*--------------------------------------------------------------
         Anchor Scroll Helper (for hashes + ScrollSmoother)

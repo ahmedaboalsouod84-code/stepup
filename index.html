@@ -36,6 +36,10 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         
+        <!-- Preconnect for ElevenLabs Widget -->
+        <link rel="preconnect" href="https://elevenlabs.io" />
+        <link rel="preconnect" href="https://unpkg.com" />
+        
         <!-- DNS Prefetch for External Domains -->
         <link rel="dns-prefetch" href="https://www.facebook.com" />
         <link rel="dns-prefetch" href="https://www.linkedin.com" />
@@ -2734,14 +2738,14 @@
     <!-- End Video Popup -->
     <!-- Script -->
     <script src="assets/js/plugins/jquery-3.7.0.min.js"></script>
-    <script src="assets/js/plugins/isotope.pkg.min.js" defer></script>
-    <script src="assets/js/plugins/swiper.min.js" defer></script>
-    <script src="assets/js/plugins/lightgallery.min.js" defer></script>
-    <script src="assets/js/plugins/SplitText.min.js" defer></script>
+    <script src="assets/js/plugins/gsap.min.js" defer></script>
     <script src="assets/js/plugins/ScrollToPlugin.min.js" defer></script>
     <script src="assets/js/plugins/ScrollTrigger.min.js" defer></script>
     <script src="assets/js/plugins/ScrollSmoother.min.js" defer></script>
-    <script src="assets/js/plugins/gsap.min.js" defer></script>
+    <script src="assets/js/plugins/SplitText.min.js" defer></script>
+    <script src="assets/js/plugins/isotope.pkg.min.js" defer></script>
+    <script src="assets/js/plugins/swiper.min.js" defer></script>
+    <script src="assets/js/plugins/lightgallery.min.js" defer></script>
     <script src="assets/js/main.js" defer></script>
     
     <!-- Scroll-Based Navbar Script - Only visible at top -->
@@ -2780,6 +2784,28 @@
             // Scroll event listener
             window.addEventListener('scroll', onScroll, { passive: true });
         })();
+    </script>
+    
+    <!-- ElevenLabs ConvAI Widget - Lazy Loaded -->
+    <div id="elevenlabs-widget-container"></div>
+    <script>
+        // Lazy load ElevenLabs widget after page is fully loaded and painted
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Create the widget element
+                var widgetContainer = document.getElementById('elevenlabs-widget-container');
+                if (widgetContainer) {
+                    widgetContainer.innerHTML = '<elevenlabs-convai agent-id="agent_1901kc2bjk4yeeks4pywb879fdne"></elevenlabs-convai>';
+                    
+                    // Dynamically load the script
+                    var script = document.createElement('script');
+                    script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+                    script.type = 'text/javascript';
+                    script.async = true;
+                    document.body.appendChild(script);
+                }
+            }, 4000); // Load after 4 seconds to ensure main content is painted
+        });
     </script>
 </body>
 
